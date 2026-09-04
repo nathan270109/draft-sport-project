@@ -1,1 +1,7 @@
-<p>cart works!</p>
+<h1>Seu carrinho</h1>
+
+<button (click)="adicionarProdutoTeste()">
+    Adicionar produto teste
+</button>
+
+<p>Produtos no carrinho: {{ cartService.produtos().length }}</p>
