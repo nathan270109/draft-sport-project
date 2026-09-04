@@ -1,1 +1,121 @@
-<p>produtos works!</p>
+<main class="product-workspace" aria-labelledby="page-title">
+  <aside class="sidebar" aria-label="Navegação de gestão">
+    <a class="brand" routerLink="/" aria-label="Voltar para a página inicial DraftSport">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M4 15.5 8.3 9l3.1 4 3.2-5.3L20 15.5" />
+          <path d="M5 18.5h14" />
+        </svg>
+      </span>
+      <span>DraftSport</span>
+    </a>
+
+    <nav class="side-nav" aria-label="Seções do painel">
+      <a routerLink="/" class="nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="m3 11 9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" />
+        </svg>
+        Visão geral
+      </a>
+      <a routerLink="/produtos" class="nav-link active" aria-current="page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M4 7.5 12 4l8 3.5-8 3.5z" />
+          <path d="M4 7.5V16l8 4 8-4V7.5M12 11v9" />
+        </svg>
+        Produtos
+        <span class="nav-status">Em breve</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-note">
+      <span class="note-dot" aria-hidden="true"></span>
+      <div>
+        <strong>Catálogo em construção</strong>
+        <p>Estrutura visual pronta para a próxima fase.</p>
+      </div>
+    </div>
+  </aside>
+
+  <section class="workspace-content">
+    <header class="topbar">
+      <div class="title-group">
+        <p class="eyebrow">Gestão de catálogo</p>
+        <h1 id="page-title">Produtos</h1>
+      </div>
+
+      <div class="topbar-actions">
+        <label class="search-control" aria-label="Buscar produto">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="6" />
+            <path d="m16 16 4 4" />
+          </svg>
+          <input type="search" placeholder="Buscar produto" disabled />
+        </label>
+        <button class="primary-button" type="button" disabled title="Cadastro disponível na próxima fase">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 5v14M5 12h14" />
+          </svg>
+          Novo produto
+        </button>
+      </div>
+    </header>
+
+    <section class="overview" aria-labelledby="overview-title">
+      <div>
+        <p class="eyebrow">Visão do catálogo</p>
+        <h2 id="overview-title">Comece pelo seu primeiro produto</h2>
+      </div>
+      <div class="summary-grid" aria-label="Resumo do catálogo">
+        <div class="summary-item">
+          <span>Produtos</span>
+          <strong>0</strong>
+        </div>
+        <div class="summary-item">
+          <span>Valor do catálogo</span>
+          <strong>R$ 0,00</strong>
+        </div>
+        <div class="summary-item summary-status">
+          <span>Status</span>
+          <strong><i aria-hidden="true"></i> Pronto para integrar</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog-panel" aria-labelledby="catalog-title">
+      <div class="catalog-heading">
+        <div>
+          <p class="eyebrow">Todos os itens</p>
+          <h2 id="catalog-title">Lista de produtos</h2>
+        </div>
+        <span class="count-chip">0 itens</span>
+      </div>
+
+      @if (currentState === 'empty') {
+        <section class="state-panel state-empty" aria-live="polite">
+          <span class="state-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+              <path d="M4 7.5 12 4l8 3.5-8 3.5z" />
+              <path d="M4 7.5V16l8 4 8-4V7.5M12 11v9" />
+            </svg>
+          </span>
+          <h3>Seu catálogo começa aqui</h3>
+          <p>Quando a integração for ativada, seus produtos aparecerão nesta lista organizada.</p>
+          <button class="secondary-button" type="button" disabled>Adicionar primeiro produto</button>
+        </section>
+      } @else if (currentState === 'loading') {
+        <section class="state-panel state-loading" aria-live="polite" aria-label="Carregando produtos">
+          <span class="loading-orbit" aria-hidden="true"></span>
+          <h3>Carregando catálogo</h3>
+          <p>Buscando os produtos cadastrados.</p>
+        </section>
+      } @else {
+        <section class="state-panel state-error" role="alert">
+          <span class="state-icon" aria-hidden="true">!</span>
+          <h3>Não foi possível carregar o catálogo</h3>
+          <p>A conexão com os produtos será tratada na fase de integração.</p>
+          <button class="secondary-button" type="button" disabled>Tentar novamente</button>
+        </section>
+      }
+    </section>
+  </section>
+</main>
