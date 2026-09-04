@@ -39,3 +39,9 @@
 <button (click)="cartService.esvaziarCarrinho()">
     Esvaziar carrinho
 </button>
+
+<h2>Resumo do pedido</h2>
+
+<p>
+    Subtotal: R$ {{ cartService.calcularSubtotal() }}
+</p>

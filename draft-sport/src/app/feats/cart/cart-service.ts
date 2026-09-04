@@ -69,5 +69,19 @@ export class CartService {
         this.produtos.set([]);
     }
 
+    calcularSubtotal() {
+
+        let subtotal = 0;
+
+        for (let i = 0; i < this.produtos().length; i++) {
+
+            subtotal += this.produtos()[i].preco * this.produtos()[i].quantidade;
+
+        }
+
+        return subtotal;
+
+    }
+
 
 }
