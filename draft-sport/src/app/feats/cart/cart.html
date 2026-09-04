@@ -12,7 +12,15 @@
     <h2>{{ produto.nome }}</h2>
     <p>{{ produto.descricao }}</p>
     <p>Tamanho: {{ produto.tamanho }}</p>
-    <p>Quantidade: {{ produto.quantidade }}</p>
+    
+    <p>
+        Quantidade: {{ produto.quantidade }}
+
+        <button (click)="cartService.aumentarQuantidade(produto.id)">
+            +
+        </button>
+    </p>
+
     <p>Preço: R$ {{ produto.preco }}</p>
 </div>
 

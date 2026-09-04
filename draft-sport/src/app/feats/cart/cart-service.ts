@@ -5,7 +5,25 @@ import { ProdutoCarrinho } from './produto-carrinho';
 export class CartService {
     produtos = signal<ProdutoCarrinho[]>([]);
 
-    adicionarProduto(produto: ProdutoCarrinho){
+    adicionarProduto(produto: ProdutoCarrinho) {
         this.produtos.update(produtosAtuais => [...produtosAtuais, produto]);
+    }
+
+    aumentarQuantidade(id: number) {
+
+        this.produtos.update(produtosAtuais => {
+
+            for (let i = 0; i < produtosAtuais.length; i++) {
+
+                if (produtosAtuais[i].id === id) {
+                    produtosAtuais[i].quantidade++;
+                }
+
+            }
+
+            return [...produtosAtuais];
+
+        });
+
     }
 }
