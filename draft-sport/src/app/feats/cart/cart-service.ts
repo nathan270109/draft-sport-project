@@ -65,5 +65,9 @@ export class CartService {
 
     }
 
+    esvaziarCarrinho() {
+        this.produtos.set([]);
+    }
+
 
 }
