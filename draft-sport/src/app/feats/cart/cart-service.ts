@@ -26,4 +26,22 @@ export class CartService {
         });
 
     }
+
+    diminuirQuantidade(id: number) {
+
+        this.produtos.update(produtosAtuais => {
+
+            for (let i = 0; i < produtosAtuais.length; i++) {
+
+                if (produtosAtuais[i].id === id && produtosAtuais[i].quantidade > 1) {
+                    produtosAtuais[i].quantidade--;
+                }
+
+            }
+
+            return [...produtosAtuais];
+
+        });
+
+    }
 }
