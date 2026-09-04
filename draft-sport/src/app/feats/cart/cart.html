@@ -25,6 +25,10 @@
         <button (click)="cartService.aumentarQuantidade(produto.id)">
             +
         </button>
+
+        <button (click)="cartService.removerProduto(produto.id)">
+            Remover
+        </button>
     </p>
 
     <p>Preço: R$ {{ produto.preco }}</p>

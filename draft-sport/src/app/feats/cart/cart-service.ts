@@ -44,4 +44,26 @@ export class CartService {
         });
 
     }
+
+    removerProduto(id: number) {
+
+        this.produtos.update(produtosAtuais => {
+
+            const novosProdutos: ProdutoCarrinho[] = [];
+
+            for (let i = 0; i < produtosAtuais.length; i++) {
+
+                if (produtosAtuais[i].id !== id) {
+                    novosProdutos.push(produtosAtuais[i]);
+                }
+
+            }
+
+            return novosProdutos;
+
+        });
+
+    }
+
+
 }
