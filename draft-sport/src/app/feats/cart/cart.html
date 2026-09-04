@@ -1,1 +1,47 @@
-<p>cart works!</p>
+<h1>Seu carrinho</h1>
+
+<button (click)="adicionarProdutoTeste()">
+    Adicionar produto teste
+</button>
+
+<p>Produtos no carrinho: {{ cartService.produtos().length }}</p>
+
+@for (produto of cartService.produtos(); track produto.id) {
+
+<div>
+    <h2>{{ produto.nome }}</h2>
+    <p>{{ produto.descricao }}</p>
+    <p>Tamanho: {{ produto.tamanho }}</p>
+
+    <p>
+        Quantidade:
+
+        <button (click)="cartService.diminuirQuantidade(produto.id)">
+            -
+        </button>
+
+        {{ produto.quantidade }}
+
+        <button (click)="cartService.aumentarQuantidade(produto.id)">
+            +
+        </button>
+
+        <button (click)="cartService.removerProduto(produto.id)">
+            Remover
+        </button>
+    </p>
+
+    <p>Preço: R$ {{ produto.preco }}</p>
+</div>
+
+}
+
+<button (click)="cartService.esvaziarCarrinho()">
+    Esvaziar carrinho
+</button>
+
+<h2>Resumo do pedido</h2>
+
+<p>
+    Subtotal: R$ {{ cartService.calcularSubtotal() }}
+</p>
