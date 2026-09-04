@@ -23,15 +23,14 @@
           <path d="M4 7.5V16l8 4 8-4V7.5M12 11v9" />
         </svg>
         Produtos
-        <span class="nav-status">Em breve</span>
       </a>
     </nav>
 
     <div class="sidebar-note">
       <span class="note-dot" aria-hidden="true"></span>
       <div>
-        <strong>Catálogo em construção</strong>
-        <p>Estrutura visual pronta para a próxima fase.</p>
+        <strong>{{ statusLabel() }}</strong>
+        <p>{{ productCount() }} {{ productCount() === 1 ? 'produto encontrado' : 'produtos encontrados' }}.</p>
       </div>
     </div>
   </aside>
@@ -49,8 +48,14 @@
             <circle cx="11" cy="11" r="6" />
             <path d="m16 16 4 4" />
           </svg>
-          <input type="search" placeholder="Buscar produto" disabled />
+          <input
+            type="search"
+            placeholder="Buscar produto"
+            (input)="onSearchInput($event)"
+            aria-describedby="search-help"
+          />
         </label>
+        <span id="search-help" class="sr-only">A busca é feita pelo nome do produto.</span>
         <button class="primary-button" type="button" disabled title="Cadastro disponível na próxima fase">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path d="M12 5v14M5 12h14" />
@@ -63,20 +68,20 @@
     <section class="overview" aria-labelledby="overview-title">
       <div>
         <p class="eyebrow">Visão do catálogo</p>
-        <h2 id="overview-title">Comece pelo seu primeiro produto</h2>
+        <h2 id="overview-title">{{ productCount() ? 'Seu catálogo em um só lugar' : 'Comece pelo seu primeiro produto' }}</h2>
       </div>
       <div class="summary-grid" aria-label="Resumo do catálogo">
         <div class="summary-item">
           <span>Produtos</span>
-          <strong>0</strong>
+          <strong>{{ productCount() }}</strong>
         </div>
         <div class="summary-item">
           <span>Valor do catálogo</span>
-          <strong>R$ 0,00</strong>
+          <strong>{{ formatPrice(catalogTotal()) }}</strong>
         </div>
         <div class="summary-item summary-status">
           <span>Status</span>
-          <strong><i aria-hidden="true"></i> Pronto para integrar</strong>
+          <strong><i aria-hidden="true"></i> {{ statusLabel() }}</strong>
         </div>
       </div>
     </section>
@@ -87,10 +92,47 @@
           <p class="eyebrow">Todos os itens</p>
           <h2 id="catalog-title">Lista de produtos</h2>
         </div>
-        <span class="count-chip">0 itens</span>
+        <span class="count-chip">{{ productCount() }} {{ productCount() === 1 ? 'item' : 'itens' }}</span>
       </div>
 
-      @if (currentState === 'empty') {
+      @if (currentState() === 'loaded') {
+        <ul class="product-list" aria-label="Produtos encontrados">
+          @for (product of products(); track product.id) {
+            <li class="product-row">
+              <div class="product-identification">
+                <img
+                  class="product-image"
+                  [src]="product.urlImagem"
+                  [alt]="'Imagem de ' + product.nome"
+                  (error)="useImageFallback($event)"
+                />
+                <div>
+                  <p class="product-label">Produto</p>
+                  <h3>{{ product.nome }}</h3>
+                </div>
+              </div>
+              <div class="product-price">
+                <p class="product-label">Preço</p>
+                <strong>{{ formatPrice(product.preco) }}</strong>
+              </div>
+              <div class="product-actions" aria-label="Ações de {{ product.nome }}">
+                <button class="icon-button" type="button" disabled title="Detalhes disponíveis na fase 4" aria-label="Ver {{ product.nome }}">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
+                    <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" />
+                    <circle cx="12" cy="12" r="2.5" />
+                  </svg>
+                </button>
+                <button class="icon-button" type="button" disabled title="Edição disponível na fase 4" aria-label="Editar {{ product.nome }}">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
+                    <path d="m4 16.5-.8 4.3 4.3-.8L19 8.5 15.5 5 4 16.5Z" />
+                    <path d="m13.8 6.7 3.5 3.5" />
+                  </svg>
+                </button>
+              </div>
+            </li>
+          }
+        </ul>
+      } @else if (currentState() === 'empty') {
         <section class="state-panel state-empty" aria-live="polite">
           <span class="state-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
@@ -99,10 +141,21 @@
             </svg>
           </span>
           <h3>Seu catálogo começa aqui</h3>
-          <p>Quando a integração for ativada, seus produtos aparecerão nesta lista organizada.</p>
+          <p>Ainda não há produtos na API. Na próxima fase, você poderá cadastrar o primeiro item por aqui.</p>
           <button class="secondary-button" type="button" disabled>Adicionar primeiro produto</button>
         </section>
-      } @else if (currentState === 'loading') {
+      } @else if (currentState() === 'search-empty') {
+        <section class="state-panel state-empty" aria-live="polite">
+          <span class="state-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+              <circle cx="10.5" cy="10.5" r="5.5" />
+              <path d="m15 15 4 4" />
+            </svg>
+          </span>
+          <h3>Nenhum produto encontrado</h3>
+          <p>Não encontramos resultados para “{{ currentSearchTerm() }}”. Tente outro nome.</p>
+        </section>
+      } @else if (currentState() === 'loading') {
         <section class="state-panel state-loading" aria-live="polite" aria-label="Carregando produtos">
           <span class="loading-orbit" aria-hidden="true"></span>
           <h3>Carregando catálogo</h3>
@@ -112,8 +165,8 @@
         <section class="state-panel state-error" role="alert">
           <span class="state-icon" aria-hidden="true">!</span>
           <h3>Não foi possível carregar o catálogo</h3>
-          <p>A conexão com os produtos será tratada na fase de integração.</p>
-          <button class="secondary-button" type="button" disabled>Tentar novamente</button>
+          <p>Verifique se a API está disponível e tente novamente.</p>
+          <button class="secondary-button" type="button" (click)="retryLoad()">Tentar novamente</button>
         </section>
       }
     </section>

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+import { of } from 'rxjs';
 import { Produtos } from './produtos';
+import { ProdutosApiService } from './produtos-api.service';
 
 describe('Produtos', () => {
   let component: Produtos;
@@ -9,7 +11,13 @@ describe('Produtos', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Produtos],
-      providers: [provideRouter([])],
+      providers: [
+        provideRouter([]),
+        {
+          provide: ProdutosApiService,
+          useValue: { list: () => of([]) },
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(Produtos);
