@@ -1,0 +1,93 @@
+.draft-footer {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 40px 20px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.footer-divider {
+    border: none;
+    border-top: 1px solid #e5e5e5;
+    margin: 30px 0 40px;
+}
+
+/* --- Layout em Colunas --- */
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 180px;
+}
+
+/* Títulos */
+.brand-name {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin: 0 0 6px 0;
+    letter-spacing: 0.5px;
+}
+
+.col-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0 9px;
+        
+}
+
+.standalone-title {
+    margin-top: 0;
+}
+
+/* Links e Textos */
+.address-text {
+    font-size: 0.9rem;
+    color: #222222;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.footer-links {
+    list-style: none;
+    padding:0;
+    left:0;
+   
+    
+}
+
+.footer-links li {
+    margin-bottom: 6px;
+}
+
+.footer-links a {
+    color: #111111c0;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+    padding: 8px ;
+}
+
+.footer-links a:hover {
+    color: rgb(253, 144, 1);
+    page-break-inside: avoid;
+}
+
+.copyright-text {
+    font-size: 0.85rem;
+    color: #333333;
+    margin-top: 24px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .footer-grid {
+        flex-direction: column;
+        gap: 28px;
+    }
+}
