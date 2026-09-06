@@ -46,7 +46,7 @@
 
 .product-card:hover {
     transform: scale(1.02);
-    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.158);
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.089);
 }
 
 .product-card img {
@@ -73,7 +73,7 @@
 }
 
 .carousel-button:hover {
-    background-color: rgba(0, 0, 0, 0.767);
+    background-color: rgba(0, 0, 0, 0.74);
 }
 
 .carousel-button.prev {

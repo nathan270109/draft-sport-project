@@ -1,10 +1,8 @@
-import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
-
-import { form, FormField } from '@angular/forms/signals';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { ProductService } from './product-service';
 
 @Component({
-  imports: [FormField],
+  imports: [],
   selector: 'app-carrossel',
   styleUrl: './carrossel.css',
   templateUrl: './carrossel.html',
