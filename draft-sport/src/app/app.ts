@@ -5,6 +5,10 @@ import { Footer } from "./components/footer/footer";
 
 @Component({
   imports: [RouterOutlet, Home, Footer],
+import { Header } from "./components/header/header";
+
+@Component({
+  imports: [RouterOutlet, Header],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
