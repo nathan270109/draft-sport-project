@@ -1,8 +1,9 @@
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { ProductService } from './product-service';
+import { RouterLink } from "@angular/router";
 
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-carrossel',
   styleUrl: './carrossel.css',
   templateUrl: './carrossel.html',
