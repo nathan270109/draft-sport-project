@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
-import { Header } from "../../components/header/header";
+import { Hero } from './hero/hero';
+import { Carrossel } from './carrossel/carrossel';
+
+
 
 @Component({
-  imports: [Header],
+  imports: [Hero,Carrossel],
   selector: 'app-home',
   styleUrl: './home.css',
   templateUrl: './home.html',
 })
+
 export class Home {}
