@@ -4,8 +4,8 @@ import { Cart } from './feats/cart/cart';
 
 export const routes: Routes = [
 
-    { path: '', redirectTo: 'home', pathMatch: 'full'},
-    { path: 'home', component: Home},
-    { path: 'cart', component: Cart}
+    // { path: '', redirectTo: 'home', pathMatch: 'full'},
+    // { path: 'home', component: Home},
+    // { path: 'cart', component: Cart}
 
 ];
