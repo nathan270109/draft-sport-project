@@ -11,8 +11,11 @@ import { ProdutosMockService } from '../produtos/produtos.service';
   templateUrl: './produto-detalhe.html',
 })
 export class ProdutoDetalhe {
+  // produto pode ficar undefined quando a URL contém um id inexistente.
   produto?: Produto;
+  // Lista derivada do mesmo catálogo, sem repetir o item aberto.
   relacionados: Produto[] = [];
+  // Estados locais: ainda não são enviados nem persistidos no carrinho.
   quantidade = 1;
   tamanhoSelecionado?: string;
 
@@ -20,14 +23,17 @@ export class ProdutoDetalhe {
     private route: ActivatedRoute,
     private produtosService: ProdutosMockService,
   ) {
+    // paramMap emite novamente se o usuário abrir outro produto sem recarregar a página.
     this.route.paramMap.subscribe((params) => {
       const id = Number(params.get('id'));
 
+      // Busca o item da URL e só exibe recomendações quando ele existe.
       this.produto = this.produtosService.buscarPorId(id);
       this.relacionados = this.produto
         ? this.produtosService.relacionados(id)
         : [];
 
+      // Ao trocar de produto, a escolha anterior não deve permanecer selecionada.
       this.quantidade = 1;
       this.tamanhoSelecionado = undefined;
     });
@@ -38,18 +44,21 @@ export class ProdutoDetalhe {
   }
 
   diminuirQuantidade(): void {
+    // Esta condição garante a regra de negócio: o mínimo é uma unidade.
     if (this.quantidade > 1) {
       this.quantidade--;
     }
   }
 
   selecionarTamanho(tamanho: string): void {
+    // O HTML usa este valor para aplicar a classe visual "selecionado".
     this.tamanhoSelecionado = tamanho;
   }
 
   onImageError(event: Event): void {
     const imagem = event.target as HTMLImageElement;
 
+    // Evita que uma falha da própria imagem alternativa gere um ciclo infinito.
     if (imagem.dataset['fallback']) {
       return;
     }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { InterfaceProdutosTs as Produto } from './interface-produtos';
 
 function criarImagemMock(titulo: string, cor: string): string {
+  // Gera uma imagem SVG local. Assim os mocks não dependem de imagens externas.
   const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
       <rect width="600" height="600" fill="${cor}" />
@@ -17,6 +18,7 @@ function criarImagemMock(titulo: string, cor: string): string {
   providedIn: 'root',
 })
 export class ProdutosMockService {
+  // Fonte temporária de dados. No futuro, este ponto pode ser trocado por chamadas HTTP.
   private readonly produtos: Produto[] = [
     {
       id: 1,
@@ -130,14 +132,17 @@ export class ProdutosMockService {
   ];
 
   listar(): Produto[] {
+    // Entrega a coleção usada pelo catálogo.
     return this.produtos;
   }
 
   buscarPorId(id: number): Produto | undefined {
+    // O detalhe recebe um id pela URL e localiza somente aquele produto.
     return this.produtos.find((produto) => produto.id === id);
   }
 
   pesquisar(termo: string): Produto[] {
+    // trim remove espaços extras e toLowerCase torna a busca independente de maiúsculas.
     const busca = termo.trim().toLowerCase();
 
     if (!busca) {
@@ -150,6 +155,7 @@ export class ProdutosMockService {
   }
 
   relacionados(idAtual: number): Produto[] {
+    // Remove o produto aberto antes de limitar as sugestões a quatro itens.
     return this.produtos
       .filter((produto) => produto.id !== idAtual)
       .slice(0, 4);

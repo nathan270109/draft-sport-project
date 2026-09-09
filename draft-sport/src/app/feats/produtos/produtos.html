@@ -1,4 +1,5 @@
 <main class="catalogo">
+  <!-- Apresentação da página e campo que atualiza termoBusca em tempo real. -->
   <section class="catalogo__intro" aria-labelledby="titulo-catalogo">
     <p class="catalogo__eyebrow">DRAFT SPORT / LOJA</p>
 
@@ -20,9 +21,12 @@
     </div>
   </section>
 
+  <!-- @if escolhe entre a grade de resultados e a mensagem de lista vazia. -->
   @if (produtosFiltrados.length > 0) {
     <section class="grade-produtos" aria-label="Lista de produtos">
+      <!-- @for cria um card por produto; track id ajuda o Angular a reutilizar elementos. -->
       @for (produto of produtosFiltrados; track produto.id) {
+        <!-- routerLink monta, por exemplo, /produtos/1 ao clicar no card. -->
         <a class="card-produto" [routerLink]="['/produtos', produto.id]">
           <div class="card-produto__imagem">
             <img [src]="produto.imagem" [alt]="produto.nome" (error)="onImageError($event)" />
@@ -31,6 +35,7 @@
           <div class="card-produto__informacoes">
             <span class="card-produto__categoria">{{ produto.categoria }}</span>
             <h2>{{ produto.nome }}</h2>
+            <!-- CurrencyPipe formata o número como preço em Real brasileiro. -->
             <strong>{{ produto.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</strong>
           </div>
         </a>

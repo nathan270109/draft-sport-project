@@ -18,10 +18,32 @@ describe('Produtos', () => {
 
     fixture = TestBed.createComponent(Produtos);
     component = fixture.componentInstance;
+    fixture.detectChanges();
     await fixture.whenStable();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('deve filtrar os produtos pela busca no catálogo', async () => {
+    component.termoBusca = 'asics';
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const cards = fixture.nativeElement.querySelectorAll('.card-produto');
+
+    expect(cards.length).toBe(1);
+    expect(cards[0].textContent).toContain('Tênis Asics Gel Excite');
+  });
+
+  it('deve mostrar o estado vazio quando não encontrar produtos', async () => {
+    component.termoBusca = 'produto que não existe';
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(fixture.nativeElement.textContent).toContain(
+      'Nenhum produto encontrado.',
+    );
   });
 });
