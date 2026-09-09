@@ -43,5 +43,6 @@
 <h2>Resumo do pedido</h2>
 
 <p>
-    Subtotal: R$ {{ cartService.calcularSubtotal() }}
+<p>
+    Subtotal: R$ {{ cartService.calcularSubtotal().toFixed(2) }}
 </p>
