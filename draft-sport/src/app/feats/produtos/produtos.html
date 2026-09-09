@@ -1,1 +1,27 @@
-<p>produtos works!</p>
+<main class="catalago">
+    <header class="catalago__cabecalho">
+        <h1>Produtos</h1>
+
+        <input type="search" [(ngModel)]="termoBusca" placeholder="Buscar produtos" aria-label="Buscar produtos" />
+    </header>
+
+    @if (produtosFiltrados.length > 0) {
+    <section class="grade-produtos" aria-label="Lista de Produtos">
+        @for (produto of produtosFiltrados; track produto.id) {
+        <a class="card-produto" [routerLink]="['/produtos', produto.id]">
+            <img [src]="produto.imagem" [alt]="produto.nome" (error)="onImageError($event)" />
+
+            <h2>{{produto.nome}}</h2>
+
+            <strong>
+                {{produto.preco | currency: 'BRL': 'symbol': '1.2-2': 'pt-BR'}}
+            </strong>
+        </a>
+        }
+    </section>
+    } @else {
+        <p class="estado-vazio">
+            Nenhum produto encontrado para "{{termoBusca}}".
+        </p>
+    }
+</main>

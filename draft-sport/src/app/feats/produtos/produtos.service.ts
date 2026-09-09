@@ -12,7 +12,7 @@ export class ProdutosMockService {
       descricao: 'Tênis leve para corrida e treinos de alta performance.',
       preco: 899.9,
       imagem: 'https://placehold.co/600x600?text=Tenis+Adidas',
-      tamanhos: [37, 38, 39, 40, 41, 42],
+      tamanhos: ['37', '38', '39', '40', '41', '42'],
       categoria: 'Tênis',
     },
     {

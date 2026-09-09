@@ -4,6 +4,6 @@ export interface InterfaceProdutosTs {
   descricao: string;
   preco: number;
   imagem: string;
-  tamanhos: string[] | number[];
+  tamanhos: string[];
   categoria: string;
 }

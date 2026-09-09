@@ -1,0 +1,59 @@
+<main class="detalhe">
+    @if (produto) {
+    <a routerLink="/produtos">← Voltar para produtos</a>
+
+    <section class="detalhe__principal">
+        <img [src]="produto.imagem" [alt]="produto.nome" />
+
+        <div>
+            <h1>{{ produto.nome }}</h1>
+
+            <strong>
+                {{ produto.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+            </strong>
+
+            <p>{{ produto.descricao }}</p>
+
+            <h2>Tamanhos</h2>
+            <div class="tamanhos">
+                @for (tamanho of produto.tamanhos; track tamanho) {
+                <button type="button" [class.selecionado]="tamanhoSelecionado === tamanho"
+                    (click)="selecionarTamanho(tamanho)">
+                    {{ tamanho }}
+                </button>
+                }
+            </div>
+
+            <div class="quantidade">
+                <button type="button" (click)="diminuirQuantidade()">−</button>
+                <span>{{ quantidade }}</span>
+                <button type="button" (click)="aumentarQuantidade()">+</button>
+            </div>
+
+            <button type="button" class="adicionar">
+                Adicionar ao carrinho
+            </button>
+        </div>
+    </section>
+
+    <section class="relacionados">
+        <h2>Você também poderá gostar</h2>
+
+        <div class="grade-produtos">
+            @for (item of relacionados; track item.id) {
+            <a [routerLink]="['/produtos', item.id]">
+                <img [src]="item.imagem" [alt]="item.nome" />
+                <h3>{{ item.nome }}</h3>
+                <span>{{ item.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</span>
+            </a>
+            }
+        </div>
+    </section>
+    } @else {
+    <section class="produto-inexistente">
+        <h1>Produto não encontrado</h1>
+        <p>Este produto não existe no catálogo atual.</p>
+        <a routerLink="/produtos">Voltar para produtos</a>
+    </section>
+    }
+</main>
