@@ -4,11 +4,6 @@
         SEU CARRINHO ({{ cartService.calcularQuantidadeProdutos() }})
     </h1>
 
-    <!-- botão temporário para testes -->
-    <button class="botao-teste" (click)="adicionarProdutoTeste()">
-        Adicionar produto teste
-    </button>
-
 
     @for (produto of cartService.produtos(); track produto.id + '-' + produto.tamanho) {
 

@@ -13,24 +13,6 @@
 }
 
 
-/* BOTÃO TEMPORÁRIO */
-
-.botao-teste {
-    padding: 9px 14px;
-    margin-bottom: 20px;
-
-    border: 1px solid #d4d4d4;
-    border-radius: 4px;
-
-    background-color: white;
-    color: #151515;
-
-    cursor: pointer;
-}
-
-
-/* PRODUTO */
-
 .produto {
     display: flex;
     align-items: center;
@@ -73,8 +55,6 @@
 }
 
 
-/* QUANTIDADE */
-
 .quantidade {
     display: flex;
     align-items: center;
@@ -101,8 +81,6 @@
     text-align: center;
 }
 
-
-/* PREÇO E REMOVER */
 
 .produto-preco {
     display: flex;
@@ -131,8 +109,6 @@
 }
 
 
-/* ESVAZIAR CARRINHO */
-
 .esvaziar {
     display: block;
 
@@ -151,8 +127,6 @@
     cursor: pointer;
 }
 
-
-/* RESUMO */
 
 .resumo {
     margin-top: 15px;
@@ -175,8 +149,6 @@
     font-size: 17px;
 }
 
-
-/* FINALIZAR */
 
 .finalizar {
     width: 100%;
@@ -201,8 +173,6 @@
 }
 
 
-/* CARRINHO VAZIO */
-
 .carrinho-vazio {
     margin-top: 30px;
     padding: 70px 20px;
@@ -222,8 +192,6 @@
     color: #666;
 }
 
-
-/* CELULAR */
 
 @media (max-width: 700px) {
 
