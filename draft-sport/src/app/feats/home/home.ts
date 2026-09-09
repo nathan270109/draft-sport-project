@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { Header } from "../../components/header/header";
+import { Carrossel } from "./carrossel/carrossel";
+import { Hero } from "./hero/hero";
 
 @Component({
-  imports: [Header],
+  imports: [Carrossel, Hero],
   selector: 'app-home',
   styleUrl: './home.css',
   templateUrl: './home.html',
