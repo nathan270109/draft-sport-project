@@ -1,108 +1,133 @@
 .carrinho {
-    width: 70%;
-    margin: 40px auto;
-    font-family: Arial, sans-serif;
+    width: 90%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 56px 0 96px;
+    color: #151515;
+    font-family: var(--fonte), Arial, sans-serif;
 }
 
-h1 {
-    font-size: 28px;
-    margin-bottom: 25px;
+.carrinho h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
 }
 
+/* botão temporário */
 .botao-teste {
-    margin-bottom: 20px;
-    padding: 8px 12px;
+    padding: 10px 15px;
+    margin-bottom: 25px;
+    border: 1px solid #ccc;
+    background-color: white;
+    cursor: pointer;
 }
 
-/* Produto */
-
+/* produto */
 .produto {
     display: flex;
+    gap: 25px;
     justify-content: space-between;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 25px 0;
+    border-bottom: 1px solid #e7e7e7;
 }
 
-.produto h2 {
+.produto-imagem {
+    width: 180px;
+    height: 140px;
+    object-fit: cover;
+    background-color: #f3f3f3;
+}
+
+.produto-info {
+    flex: 1;
+}
+
+.produto-info h2 {
+    margin: 0 0 10px;
     font-size: 18px;
-    margin: 0;
 }
 
-.produto p {
+.produto-info p {
     margin: 8px 0;
+    color: #606060;
 }
 
 .quantidade {
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-top: 15px;
 }
 
 .quantidade button {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #d4d4d4;
+    background-color: white;
+    cursor: pointer;
 }
 
 .produto-preco {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: end;
-}
-
-.remover {
-    border: none;
-    background: none;
-    cursor: pointer;
+    justify-content: space-between;
 }
 
 .produto-preco p {
     font-weight: bold;
 }
 
-/* Resumo */
+.remover {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+}
 
+/* esvaziar */
+.esvaziar {
+    border: none;
+    background: none;
+    padding: 0;
+    margin-top: 20px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* resumo */
 .resumo {
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
 .resumo h2 {
-    font-size: 25px;
-    margin-bottom: 10px;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 .linha-resumo {
     display: flex;
     justify-content: space-between;
-    margin: 8px 0;
+    margin: 12px 0;
 }
 
 .total {
+    padding-top: 12px;
+    border-top: 1px solid #e7e7e7;
     font-size: 18px;
 }
 
 .finalizar {
     width: 100%;
+    padding: 14px;
+    margin-top: 15px;
+    border: none;
     background-color: black;
     color: white;
-    border: none;
-    padding: 10px;
-    margin-top: 10px;
     font-weight: bold;
     cursor: pointer;
 }
 
-.esvaziar {
-    border: none;
-    background: none;
-    padding: 0;
-    margin-top: 10px;
-    cursor: pointer;
-    text-decoration: underline;
-}
-
+/* carrinho vazio */
 .carrinho-vazio {
     margin-top: 50px;
     padding: 60px 0;
