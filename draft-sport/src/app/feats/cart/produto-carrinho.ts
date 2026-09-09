@@ -4,6 +4,6 @@ export interface ProdutoCarrinho {
     descricao: string;
     preco: number;
     imagem: string;
-    tamanho: number;
+    tamanho: string;
     quantidade: number;
 }

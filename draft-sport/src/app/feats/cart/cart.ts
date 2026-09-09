@@ -17,7 +17,7 @@ export class Cart {
       descricao: 'Cloud White / Orbit Grey / Champagne Met.',
       preco: 999.99,
       imagem: '',
-      tamanho: 37,
+      tamanho: '37',
       quantidade: 1
     };
 
