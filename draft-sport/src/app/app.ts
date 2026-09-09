@@ -3,14 +3,9 @@ import { RouterOutlet } from '@angular/router';
 import { Home } from "./feats/home/home";
 import { Footer } from "./components/footer/footer";
 
+
 @Component({
   imports: [RouterOutlet, Home, Footer],
-import { Header } from "./components/header/header";
-import { Home } from "./feats/home/home";
-
-
-@Component({
-  imports: [RouterOutlet, Header, Home],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
