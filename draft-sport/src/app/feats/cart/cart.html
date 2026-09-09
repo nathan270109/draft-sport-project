@@ -1,48 +1,89 @@
-<h1>Seu carrinho</h1>
+<div class="carrinho">
 
-<button (click)="adicionarProdutoTeste()">
-    Adicionar produto teste
-</button>
+    <h1>
+        SEU CARRINHO ({{ cartService.produtos().length }})
+    </h1>
 
-<p>Produtos no carrinho: {{ cartService.produtos().length }}</p>
+    <!-- botão temporário só para testar o carrinho -->
+    <button class="botao-teste" (click)="adicionarProdutoTeste()">
+        Adicionar produto teste
+    </button>
 
-@for (produto of cartService.produtos(); track produto.id) {
+    @for (produto of cartService.produtos(); track produto.id) {
 
-<div>
-    <h2>{{ produto.nome }}</h2>
-    <p>{{ produto.descricao }}</p>
-    <p>Tamanho: {{ produto.tamanho }}</p>
+        <div class="produto">
 
-    <p>
-        Quantidade:
+            <div class="produto-info">
 
-        <button (click)="cartService.diminuirQuantidade(produto.id)">
-            -
+                <h2>{{ produto.nome }}</h2>
+
+                <p>{{ produto.descricao }}</p>
+
+                <p>Tamanho: {{ produto.tamanho }}</p>
+
+                <div class="quantidade">
+
+                    <button (click)="cartService.diminuirQuantidade(produto.id)">
+                        -
+                    </button>
+
+                    <span>{{ produto.quantidade }}</span>
+
+                    <button (click)="cartService.aumentarQuantidade(produto.id)">
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="produto-preco">
+
+                <button
+                    class="remover"
+                    (click)="cartService.removerProduto(produto.id)">
+                    ✕
+                </button>
+
+                <p>
+                    R$ {{ produto.preco.toFixed(2) }}
+                </p>
+
+            </div>
+
+        </div>
+
+    }
+
+    <div class="resumo">
+
+        <h2>RESUMO DO PEDIDO</h2>
+
+        <div class="linha-resumo">
+            <span>{{ cartService.produtos().length }} produtos</span>
+
+            <span>
+                R$ {{ cartService.calcularSubtotal().toFixed(2) }}
+            </span>
+        </div>
+
+        <div class="linha-resumo">
+            <span>Entrega</span>
+            <span>R$ 15,00</span>
+        </div>
+
+        <div class="linha-resumo total">
+            <strong>Total</strong>
+
+            <strong>
+                R$ {{ (cartService.calcularSubtotal() + 15).toFixed(2) }}
+            </strong>
+        </div>
+
+        <button class="finalizar">
+            Finalizar compra
         </button>
 
-        {{ produto.quantidade }}
+    </div>
 
-        <button (click)="cartService.aumentarQuantidade(produto.id)">
-            +
-        </button>
-
-        <button (click)="cartService.removerProduto(produto.id)">
-            Remover
-        </button>
-    </p>
-
-    <p>Preço: R$ {{ produto.preco }}</p>
 </div>
-
-}
-
-<button (click)="cartService.esvaziarCarrinho()">
-    Esvaziar carrinho
-</button>
-
-<h2>Resumo do pedido</h2>
-
-<p>
-<p>
-    Subtotal: R$ {{ cartService.calcularSubtotal().toFixed(2) }}
-</p>

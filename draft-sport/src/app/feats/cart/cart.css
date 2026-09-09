@@ -1,0 +1,95 @@
+.carrinho {
+    width: 70%;
+    margin: 40px auto;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+.botao-teste {
+    margin-bottom: 20px;
+    padding: 8px 12px;
+}
+
+/* Produto */
+
+.produto {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.produto h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.produto p {
+    margin: 8px 0;
+}
+
+.quantidade {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantidade button {
+    width: 30px;
+    height: 30px;
+}
+
+.produto-preco {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.remover {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.produto-preco p {
+    font-weight: bold;
+}
+
+/* Resumo */
+
+.resumo {
+    margin-top: 30px;
+}
+
+.resumo h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.linha-resumo {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+
+.total {
+    font-size: 18px;
+}
+
+.finalizar {
+    width: 100%;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
