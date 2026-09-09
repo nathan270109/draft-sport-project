@@ -28,13 +28,16 @@ export class CartService {
 
     }
 
-    aumentarQuantidade(id: number) {
+    aumentarQuantidade(id: number, tamanho: string) {
 
         this.produtos.update(produtosAtuais => {
 
             for (let i = 0; i < produtosAtuais.length; i++) {
 
-                if (produtosAtuais[i].id === id) {
+                if (
+                    produtosAtuais[i].id === id &&
+                    produtosAtuais[i].tamanho === tamanho
+                ) {
                     produtosAtuais[i].quantidade++;
                 }
 
@@ -46,13 +49,17 @@ export class CartService {
 
     }
 
-    diminuirQuantidade(id: number) {
+    diminuirQuantidade(id: number, tamanho: string) {
 
         this.produtos.update(produtosAtuais => {
 
             for (let i = 0; i < produtosAtuais.length; i++) {
 
-                if (produtosAtuais[i].id === id && produtosAtuais[i].quantidade > 1) {
+                if (
+                    produtosAtuais[i].id === id &&
+                    produtosAtuais[i].tamanho === tamanho &&
+                    produtosAtuais[i].quantidade > 1
+                ) {
                     produtosAtuais[i].quantidade--;
                 }
 
@@ -64,7 +71,7 @@ export class CartService {
 
     }
 
-    removerProduto(id: number) {
+    removerProduto(id: number, tamanho: string) {
 
         this.produtos.update(produtosAtuais => {
 
@@ -72,7 +79,10 @@ export class CartService {
 
             for (let i = 0; i < produtosAtuais.length; i++) {
 
-                if (produtosAtuais[i].id !== id) {
+                if (
+                    produtosAtuais[i].id !== id ||
+                    produtosAtuais[i].tamanho !== tamanho
+                ) {
                     novosProdutos.push(produtosAtuais[i]);
                 }
 

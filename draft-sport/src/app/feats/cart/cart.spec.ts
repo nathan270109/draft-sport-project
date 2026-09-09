@@ -12,6 +12,9 @@ describe('Cart', () => {
 
     fixture = TestBed.createComponent(Cart);
     component = fixture.componentInstance;
+
+    fixture.detectChanges();
+
     await fixture.whenStable();
   });
 

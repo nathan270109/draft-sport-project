@@ -8,9 +8,9 @@ import { ProdutoCarrinho } from './produto-carrinho';
   templateUrl: './cart.html',
 })
 export class Cart {
-  protected readonly cartService= inject(CartService);
+  protected readonly cartService = inject(CartService);
 
-  adicionarProdutoTeste(){
+  adicionarProdutoTeste() {
     const produto: ProdutoCarrinho = {
       id: 1,
       nome: 'Tênis Adistar Control 5',
@@ -22,5 +22,12 @@ export class Cart {
     };
 
     this.cartService.adicionarProduto(produto);
+  }
+
+  formatarPreco(valor: number) {
+    return valor.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    });
   }
 }
