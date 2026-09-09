@@ -46,4 +46,15 @@ export class ProdutoDetalhe {
   selecionarTamanho(tamanho: string): void {
     this.tamanhoSelecionado = tamanho;
   }
+
+  onImageError(event: Event): void {
+    const imagem = event.target as HTMLImageElement;
+
+    if (imagem.dataset['fallback']) {
+      return;
+    }
+
+    imagem.dataset['fallback'] = 'true';
+    imagem.src = '/produtos/tenis-adizero-mock.png';
+  }
 }

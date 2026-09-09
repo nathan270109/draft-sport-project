@@ -1,27 +1,46 @@
-<main class="catalago">
-    <header class="catalago__cabecalho">
-        <h1>Produtos</h1>
+<main class="catalogo">
+  <section class="catalogo__intro" aria-labelledby="titulo-catalogo">
+    <p class="catalogo__eyebrow">DRAFT SPORT / LOJA</p>
 
-        <input type="search" [(ngModel)]="termoBusca" placeholder="Buscar produtos" aria-label="Buscar produtos" />
-    </header>
+    <div class="catalogo__cabecalho">
+      <div>
+        <h1 id="titulo-catalogo">Produtos para ir além.</h1>
+        <p>Seleção esportiva para treinar, competir e superar seus limites.</p>
+      </div>
 
-    @if (produtosFiltrados.length > 0) {
-    <section class="grade-produtos" aria-label="Lista de Produtos">
-        @for (produto of produtosFiltrados; track produto.id) {
+      <label class="campo-busca">
+        <span class="campo-busca__rotulo">Buscar no catálogo</span>
+        <input
+          type="search"
+          [(ngModel)]="termoBusca"
+          placeholder="O que você procura?"
+          aria-label="Buscar produtos"
+        />
+      </label>
+    </div>
+  </section>
+
+  @if (produtosFiltrados.length > 0) {
+    <section class="grade-produtos" aria-label="Lista de produtos">
+      @for (produto of produtosFiltrados; track produto.id) {
         <a class="card-produto" [routerLink]="['/produtos', produto.id]">
+          <div class="card-produto__imagem">
             <img [src]="produto.imagem" [alt]="produto.nome" (error)="onImageError($event)" />
+          </div>
 
-            <h2>{{produto.nome}}</h2>
-
-            <strong>
-                {{produto.preco | currency: 'BRL': 'symbol': '1.2-2': 'pt-BR'}}
-            </strong>
+          <div class="card-produto__informacoes">
+            <span class="card-produto__categoria">{{ produto.categoria }}</span>
+            <h2>{{ produto.nome }}</h2>
+            <strong>{{ produto.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</strong>
+          </div>
         </a>
-        }
+      }
     </section>
-    } @else {
-        <p class="estado-vazio">
-            Nenhum produto encontrado para "{{termoBusca}}".
-        </p>
-    }
+  } @else {
+    <section class="estado-vazio">
+      <p class="catalogo__eyebrow">SEM RESULTADOS</p>
+      <h2>Nenhum produto encontrado.</h2>
+      <p>Não encontramos resultados para “{{ termoBusca }}”.</p>
+    </section>
+  }
 </main>

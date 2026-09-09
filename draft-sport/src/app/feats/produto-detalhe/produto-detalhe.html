@@ -1,20 +1,21 @@
 <main class="detalhe">
     @if (produto) {
-    <a routerLink="/produtos">← Voltar para produtos</a>
+    <a class="detalhe__voltar" routerLink="/produtos">← Voltar para produtos</a>
 
     <section class="detalhe__principal">
-        <img [src]="produto.imagem" [alt]="produto.nome" />
+        <img [src]="produto.imagem" [alt]="produto.nome" (error)="onImageError($event)" />
 
-        <div>
+        <div class="detalhe__conteudo">
+            <p class="detalhe__categoria">{{ produto.categoria }}</p>
             <h1>{{ produto.nome }}</h1>
 
-            <strong>
+            <strong class="detalhe__preco">
                 {{ produto.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
             </strong>
 
             <p>{{ produto.descricao }}</p>
 
-            <h2>Tamanhos</h2>
+            <h2 class="detalhe__subtitulo">Escolha o tamanho</h2>
             <div class="tamanhos">
                 @for (tamanho of produto.tamanhos; track tamanho) {
                 <button type="button" [class.selecionado]="tamanhoSelecionado === tamanho"
@@ -25,9 +26,9 @@
             </div>
 
             <div class="quantidade">
-                <button type="button" (click)="diminuirQuantidade()">−</button>
+                <button type="button" aria-label="Diminuir quantidade" (click)="diminuirQuantidade()">−</button>
                 <span>{{ quantidade }}</span>
-                <button type="button" (click)="aumentarQuantidade()">+</button>
+                <button type="button" aria-label="Aumentar quantidade" (click)="aumentarQuantidade()">+</button>
             </div>
 
             <button type="button" class="adicionar">
@@ -37,12 +38,13 @@
     </section>
 
     <section class="relacionados">
+        <p class="detalhe__categoria">Continue explorando</p>
         <h2>Você também poderá gostar</h2>
 
         <div class="grade-produtos">
             @for (item of relacionados; track item.id) {
             <a [routerLink]="['/produtos', item.id]">
-                <img [src]="item.imagem" [alt]="item.nome" />
+                <img [src]="item.imagem" [alt]="item.nome" (error)="onImageError($event)" />
                 <h3>{{ item.nome }}</h3>
                 <span>{{ item.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</span>
             </a>

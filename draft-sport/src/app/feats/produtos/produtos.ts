@@ -27,8 +27,7 @@ export class Produtos {
       }
 
       imagem.dataset['fallback'] = 'true';
-      imagem.src = 'https://placehold.co/600x600?text=Draft+Sport';
+      imagem.src = '/produtos/tenis-adizero-mock.png';
     }
   
 }
-
