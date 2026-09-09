@@ -11,49 +11,53 @@
 
     @for (produto of cartService.produtos(); track produto.id) {
 
-        <div class="produto">
+    <div class="produto">
 
-            <div class="produto-info">
+        <div class="produto-info">
 
-                <h2>{{ produto.nome }}</h2>
+            <h2>{{ produto.nome }}</h2>
 
-                <p>{{ produto.descricao }}</p>
+            <p>{{ produto.descricao }}</p>
 
-                <p>Tamanho: {{ produto.tamanho }}</p>
+            <p>Tamanho: {{ produto.tamanho }}</p>
 
-                <div class="quantidade">
+            <div class="quantidade">
 
-                    <button (click)="cartService.diminuirQuantidade(produto.id)">
-                        -
-                    </button>
-
-                    <span>{{ produto.quantidade }}</span>
-
-                    <button (click)="cartService.aumentarQuantidade(produto.id)">
-                        +
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div class="produto-preco">
-
-                <button
-                    class="remover"
-                    (click)="cartService.removerProduto(produto.id)">
-                    ✕
+                <button (click)="cartService.diminuirQuantidade(produto.id)">
+                    -
                 </button>
 
-                <p>
-                    R$ {{ produto.preco.toFixed(2) }}
-                </p>
+                <span>{{ produto.quantidade }}</span>
+
+                <button (click)="cartService.aumentarQuantidade(produto.id)">
+                    +
+                </button>
 
             </div>
 
         </div>
 
+        <div class="produto-preco">
+
+            <button class="remover" (click)="cartService.removerProduto(produto.id)">
+                ✕
+            </button>
+
+            <p>
+                R$ {{ produto.preco.toFixed(2) }}
+            </p>
+
+        </div>
+
+    </div>
+
     }
+
+    @if (cartService.produtos().length > 0) {
+
+    <button class="esvaziar" (click)="cartService.esvaziarCarrinho()">
+        Esvaziar carrinho
+    </button>
 
     <div class="resumo">
 
@@ -85,5 +89,14 @@
         </button>
 
     </div>
+
+    } @else {
+
+    <div class="carrinho-vazio">
+        <h2>Seu carrinho está vazio</h2>
+        <p>Adicione produtos para continuar.</p>
+    </div>
+
+    }
 
 </div>

@@ -93,3 +93,27 @@ h1 {
     font-weight: bold;
     cursor: pointer;
 }
+
+.esvaziar {
+    border: none;
+    background: none;
+    padding: 0;
+    margin-top: 10px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.carrinho-vazio {
+    margin-top: 50px;
+    padding: 60px 0;
+    text-align: center;
+    border-top: 1px solid #e7e7e7;
+}
+
+.carrinho-vazio h2 {
+    margin-bottom: 10px;
+}
+
+.carrinho-vazio p {
+    color: #666;
+}
