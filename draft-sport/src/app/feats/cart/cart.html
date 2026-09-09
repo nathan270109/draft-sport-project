@@ -1,7 +1,7 @@
 <div class="carrinho">
 
     <h1>
-        SEU CARRINHO ({{ cartService.produtos().length }})
+        SEU CARRINHO ({{ cartService.calcularQuantidadeProdutos() }})
     </h1>
 
     <!-- botão temporário só para testar o carrinho -->
@@ -64,7 +64,7 @@
         <h2>RESUMO DO PEDIDO</h2>
 
         <div class="linha-resumo">
-            <span>{{ cartService.produtos().length }} produtos</span>
+            <span>{{ cartService.calcularQuantidadeProdutos() }} produtos</span>
 
             <span>
                 R$ {{ cartService.calcularSubtotal().toFixed(2) }}

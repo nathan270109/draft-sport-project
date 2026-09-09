@@ -102,5 +102,19 @@ export class CartService {
 
     }
 
+    calcularQuantidadeProdutos() {
+
+        let quantidade = 0;
+
+        for (let i = 0; i < this.produtos().length; i++) {
+
+            quantidade += this.produtos()[i].quantidade;
+
+        }
+
+        return quantidade;
+
+    }
+
 
 }
