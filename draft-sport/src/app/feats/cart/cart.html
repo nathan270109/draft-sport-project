@@ -44,7 +44,7 @@
             </button>
 
             <p>
-                R$ {{ produto.preco.toFixed(2) }}
+                R$ {{ produto.preco.toFixed(2).replace('.', ',') }}
             </p>
 
         </div>
@@ -67,7 +67,7 @@
             <span>{{ cartService.calcularQuantidadeProdutos() }} produtos</span>
 
             <span>
-                R$ {{ cartService.calcularSubtotal().toFixed(2) }}
+                R$ {{ cartService.calcularSubtotal().toFixed(2).replace('.', ',') }}
             </span>
         </div>
 
@@ -80,7 +80,7 @@
             <strong>Total</strong>
 
             <strong>
-                R$ {{ (cartService.calcularSubtotal() + 15).toFixed(2) }}
+                R$ {{ (cartService.calcularSubtotal() + 15).toFixed(2).replace('.', ',') }}
             </strong>
         </div>
 
