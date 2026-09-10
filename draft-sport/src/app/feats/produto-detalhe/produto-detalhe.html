@@ -1,0 +1,66 @@
+<main class="detalhe">
+    <!-- O detalhe só é renderizado quando o id da rota encontra um produto. -->
+    @if (produto) {
+    <a class="detalhe__voltar" routerLink="/produtos">← Voltar para produtos</a>
+
+    <section class="detalhe__principal">
+        <img [src]="produto.imagem" [alt]="produto.nome" (error)="onImageError($event)" />
+
+        <div class="detalhe__conteudo">
+            <p class="detalhe__categoria">{{ produto.categoria }}</p>
+            <h1>{{ produto.nome }}</h1>
+
+            <strong class="detalhe__preco">
+                {{ produto.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+            </strong>
+
+            <p>{{ produto.descricao }}</p>
+
+            <h2 class="detalhe__subtitulo">Escolha o tamanho</h2>
+            <div class="tamanhos">
+                <!-- Cada botão salva o tamanho escolhido no estado local do componente. -->
+                @for (tamanho of produto.tamanhos; track tamanho) {
+                <button type="button" [class.selecionado]="tamanhoSelecionado === tamanho"
+                    (click)="selecionarTamanho(tamanho)">
+                    {{ tamanho }}
+                </button>
+                }
+            </div>
+
+            <!-- Os eventos de clique chamam métodos que controlam o mínimo de uma unidade. -->
+            <div class="quantidade">
+                <button type="button" aria-label="Diminuir quantidade" (click)="diminuirQuantidade()">−</button>
+                <span>{{ quantidade }}</span>
+                <button type="button" aria-label="Aumentar quantidade" (click)="aumentarQuantidade()">+</button>
+            </div>
+
+            <button type="button" class="adicionar">
+                Adicionar ao carrinho
+            </button>
+        </div>
+    </section>
+
+    <section class="relacionados">
+        <p class="detalhe__categoria">Continue explorando</p>
+        <h2>Você também poderá gostar</h2>
+
+        <div class="grade-produtos">
+            <!-- Os relacionados usam a mesma rota de detalhe dos cards do catálogo. -->
+            @for (item of relacionados; track item.id) {
+            <a [routerLink]="['/produtos', item.id]">
+                <img [src]="item.imagem" [alt]="item.nome" (error)="onImageError($event)" />
+                <h3>{{ item.nome }}</h3>
+                <span>{{ item.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</span>
+            </a>
+            }
+        </div>
+    </section>
+    } @else {
+    <!-- Estado exibido quando buscarPorId não encontra o id presente na URL. -->
+    <section class="produto-inexistente">
+        <h1>Produto não encontrado</h1>
+        <p>Este produto não existe no catálogo atual.</p>
+        <a routerLink="/produtos">Voltar para produtos</a>
+    </section>
+    }
+</main>

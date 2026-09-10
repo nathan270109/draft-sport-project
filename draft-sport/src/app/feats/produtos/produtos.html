@@ -1,1 +1,51 @@
-<p>produtos works!</p>
+<main class="catalogo">
+  <!-- Apresentação da página e campo que atualiza termoBusca em tempo real. -->
+  <section class="catalogo__intro" aria-labelledby="titulo-catalogo">
+    <p class="catalogo__eyebrow">DRAFT SPORT / LOJA</p>
+
+    <div class="catalogo__cabecalho">
+      <div>
+        <h1 id="titulo-catalogo">Produtos para ir além.</h1>
+        <p>Seleção esportiva para treinar, competir e superar seus limites.</p>
+      </div>
+
+      <label class="campo-busca">
+        <span class="campo-busca__rotulo">Buscar no catálogo</span>
+        <input
+          type="search"
+          [(ngModel)]="termoBusca"
+          placeholder="O que você procura?"
+          aria-label="Buscar produtos"
+        />
+      </label>
+    </div>
+  </section>
+
+  <!-- @if escolhe entre a grade de resultados e a mensagem de lista vazia. -->
+  @if (produtosFiltrados.length > 0) {
+    <section class="grade-produtos" aria-label="Lista de produtos">
+      <!-- @for cria um card por produto; track id ajuda o Angular a reutilizar elementos. -->
+      @for (produto of produtosFiltrados; track produto.id) {
+        <!-- routerLink monta, por exemplo, /produtos/1 ao clicar no card. -->
+        <a class="card-produto" [routerLink]="['/produtos', produto.id]">
+          <div class="card-produto__imagem">
+            <img [src]="produto.imagem" [alt]="produto.nome" (error)="onImageError($event)" />
+          </div>
+
+          <div class="card-produto__informacoes">
+            <span class="card-produto__categoria">{{ produto.categoria }}</span>
+            <h2>{{ produto.nome }}</h2>
+            <!-- CurrencyPipe formata o número como preço em Real brasileiro. -->
+            <strong>{{ produto.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</strong>
+          </div>
+        </a>
+      }
+    </section>
+  } @else {
+    <section class="estado-vazio">
+      <p class="catalogo__eyebrow">SEM RESULTADOS</p>
+      <h2>Nenhum produto encontrado.</h2>
+      <p>Não encontramos resultados para “{{ termoBusca }}”.</p>
+    </section>
+  }
+</main>

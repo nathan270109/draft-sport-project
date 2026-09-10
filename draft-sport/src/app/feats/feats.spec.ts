@@ -1,5 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { Feats } from './feats';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt, 'pt-BR');
 
 describe('Feats', () => {
   let component: Feats;
@@ -8,6 +13,7 @@ describe('Feats', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Feats],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(Feats);
