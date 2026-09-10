@@ -12,11 +12,11 @@ export class Carrossel {
 
   readonly carrosselService = inject(ProductService);
 
-  @ViewChild('caraouselTracker') track!: ElementRef<HTMLDivElement>;
+  @ViewChild('carouselTrack') track!: ElementRef<HTMLDivElement>;
 
   readonly scroLLAmount = 500;
 
-  scroLLeft(): void {
+  scrollLeft(): void {
     if (this.track?.nativeElement) return;
     const el = this.track.nativeElement;
 
