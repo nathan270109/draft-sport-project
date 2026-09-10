@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CartService } from './cart-service';
 
 @Component({
   imports: [],
@@ -6,4 +7,13 @@ import { Component } from '@angular/core';
   styleUrl: './cart.css',
   templateUrl: './cart.html',
 })
-export class Cart {}
+export class Cart {
+  protected readonly cartService = inject(CartService);
+
+  formatarPreco(valor: number) {
+    return valor.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    });
+  }
+}
