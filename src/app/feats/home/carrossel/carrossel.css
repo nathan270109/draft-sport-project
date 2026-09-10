@@ -4,7 +4,17 @@
     gap: 32px;
     align-items: center;
     padding: 10px 0 0px 0;
-    margin: 70px 55px 0;
+    margin:0 0 0 84px;
+}
+
+.nav-carrossel h2 {
+    color: black;
+    font-family: system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.06em;
+    line-height: 0.98;
+    max-width: 660px;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin: 70px 0 0 82px;
 }
 
 .nav-carrossel nav a {
@@ -80,11 +90,11 @@
 
 .product-card {
     flex: 0 0 200px;
-    border: 1px solid #e0e0e0;
     border-radius: 8px;
     padding: 16px;
     text-align: center;
-    background-color: #ffffff;
+    color: white;
+    background-color: #292929c0;
     transition: 0.2s;
 
 }
