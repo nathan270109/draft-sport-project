@@ -1,7 +1,7 @@
 /* header */
 header {
     background-color: rgb(241, 237, 237, 0.856);
-    padding: 30px;
+    padding: 17px; 
     border-bottom: 1px solid rgb(216, 209, 209);
     font-family: var(--fonte);
     box-shadow: var(--sombra);
@@ -25,16 +25,43 @@ nav {
 }
 
 nav a {
-    padding: 8px 12px;
+    padding: 6px 10px;
     text-decoration: none;
+    position: relative;
     color: rgba(0, 0, 0, 0.6);
+    font-weight: 500;
+    font-family: var(--fonte);
+    font-size: 15px;
     border-radius: 10px;
-    transition: .4s;
+    transition: color 0.3s ease;
+    cursor: pointer;
 }
 
-nav a:hover {
-    transform: scale(1.01);
-    color: rgb(253, 123, 1);
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #C76E00;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+nav a:hover, .navegacao nav a.active {
+    color: #C76E00;
+    font-weight: 600;
+}
+
+nav a:hover::after {
+    transform: scaleX(1);
+}
+
+
+nav a.active::after {
+    transform: scaleX(0);
 }
 
 /* div do título */
@@ -47,9 +74,14 @@ nav a:hover {
     color: black;
 }
 
+.inicio h2 {
+    font-size: 25px;
+}
+
 /* div da busca e do carrinho */
 .buscar-e-carrinho {
     justify-self: end;
+    margin: 0 12px;
 }
 
 /* carrinho */
