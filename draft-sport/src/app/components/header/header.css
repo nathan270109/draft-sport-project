@@ -9,13 +9,16 @@ header {
 
 /* dentro do header para separar as divs */
 .container-header {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    flex-wrap: wrap;
 }
 
 /* navegação */
+.navegacao {
+    justify-self: start;
+}
+
 nav {
     display: flex;
     gap: 5px;
@@ -26,15 +29,19 @@ nav a {
     text-decoration: none;
     color: rgba(0, 0, 0, 0.6);
     border-radius: 10px;
+    transition: .4s;
 }
 
 nav a:hover {
-    transition: .4s;
     transform: scale(1.01);
     color: rgb(253, 123, 1);
 }
 
-/* voltar para a página home quando clicar no título da loja */
+/* div do título da DRAFT SPORTS*/
+.titulo {
+    justify-self: center;
+}
+
 .inicio {
     text-decoration: none;
     color: black;
@@ -42,45 +49,7 @@ nav a:hover {
 
 /* div da busca e do carrinho */
 .buscar-e-carrinho {
-    display: flex;
-}
-
-form {
-    display: flex;
-    gap: 5px;
-}
-
-/* campo de digitação do produto */
-input {
-    background: rgb(190, 186, 186);
-    font-family: var(--fonte);
-    color: black;
-    border: 0 solid;
-    padding: 4px;
-    width: 75%;
-    border-radius: 40px;
-    font-weight: 200;
-}
-
-.busca:focus {
-    outline: none;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-}
-
-.busca::placeholder {
-    color: rgba(0, 0, 0, 0.7);
-    font-family: var(--fonte);
-    font-size: 14px;
-    padding: 0 5px;
-}
-
-/* botão de pesquisar produto */
-button {
-    border: 0 solid;
-    font-size: 18px;
-    color: rgb(0, 0, 0);
-    cursor: pointer;
-    margin: 0 30px 0 0;
+    justify-self: end;
 }
 
 /* carrinho */
