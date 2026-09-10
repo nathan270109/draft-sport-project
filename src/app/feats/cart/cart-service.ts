@@ -1,7 +1,3 @@
-import { Service } from '@angular/core';
-
-@Service()
-export class CartService {}
 import { Service, signal } from '@angular/core';
 import { ProdutoCarrinho } from './produto-carrinho';
 
