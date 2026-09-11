@@ -1,8 +1,9 @@
 .hero {
     position: relative;
-    width: 100%;
-    margin: auto;
-    height: 400px;
+    width: 88%;
+    margin:  50px auto;
+    height: 460px;
+    border-radius: 10px;
     overflow: hidden; 
     display: flex;
     align-items: center;
