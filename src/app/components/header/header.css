@@ -1,22 +1,30 @@
-/* header */
-header {
-    background-color: rgb(241, 237, 237, 0.856);
+
+
+/* dentro do header para separar as divs */
+.container-header {
+    display: flex;
+    grid-template-columns: 1fr auto 1fr;
+    justify-content: space-between;
+    background-color: rgba(241, 237, 237, 0);
     padding: 17px; 
-    border-bottom: 1px solid rgb(216, 209, 209);
     font-family: var(--fonte);
     box-shadow: var(--sombra);
 }
 
-/* dentro do header para separar as divs */
-.container-header {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
+/* navegação */
+
+
+.links {
+  display: flex;
+  align-items: center; /* Alinha o menu, a linha e o carrinho na mesma altura */
+  gap: 20px; /* Espaçamento uniforme entre os elementos */
 }
 
-/* navegação */
-.navegacao {
-    justify-self: start;
+.divisor {
+  width: 1px; /* Espessura da linha */
+  height: 24px; /* Altura da linha (ajuste conforme o tamanho do seu header) */
+  background-color: #ccc; /* Cor da linha (pode alterar para a cor da sua paleta) */
+  opacity: 0.5; /* Opcional: deixa a linha levemente suave */
 }
 
 nav {
@@ -28,7 +36,7 @@ nav a {
     padding: 6px 10px;
     text-decoration: none;
     position: relative;
-    color: rgba(0, 0, 0, 0.6);
+    color: rgb(253, 252, 252);
     font-weight: 500;
     font-family: var(--fonte);
     font-size: 15px;
@@ -66,12 +74,12 @@ nav a.active::after {
 
 /* div do título */
 .titulo {
-    justify-self: center;
+    justify-self: start;
 }
 
 .inicio {
     text-decoration: none;
-    color: black;
+    color: rgb(253, 253, 253);
 }
 
 .inicio h2 {
@@ -84,8 +92,10 @@ nav a.active::after {
     margin: 0 12px;
 }
 
+
 /* carrinho */
 .carrinho {
-    color: black;
+    color: rgb(252, 252, 252);
     font-size: 18px;
 }
+
