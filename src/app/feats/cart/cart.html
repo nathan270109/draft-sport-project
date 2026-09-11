@@ -1,0 +1,145 @@
+
+<div class="carrinho">
+
+    <h1>
+        SEU CARRINHO ({{ cartService.calcularQuantidadeProdutos() }})
+    </h1>
+
+
+    @for (produto of cartService.produtos(); track produto.id + '-' + produto.tamanho) {
+
+    <div class="produto">
+
+        @if (produto.imagem) {
+        <img class="produto-imagem" [src]="produto.imagem" [alt]="produto.nome">
+        }
+
+        <div class="produto-info">
+
+            <h2>{{ produto.nome }}</h2>
+
+            <p>{{ produto.descricao }}</p>
+
+            <p>Tamanho: {{ produto.tamanho }}</p>
+
+            <div class="quantidade">
+
+                <button (click)="cartService.diminuirQuantidade(produto.id, produto.tamanho)">
+                    -
+                </button>
+
+                <span>
+                    {{ produto.quantidade }}
+                </span>
+
+                <button (click)="cartService.aumentarQuantidade(produto.id, produto.tamanho)">
+                    +
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="produto-preco">
+
+            <button class="remover" (click)="cartService.removerProduto(produto.id, produto.tamanho)">
+                ✕
+            </button>
+
+            <p>
+                {{ formatarPreco(produto.preco) }}
+            </p>
+
+        </div>
+
+    </div>
+
+    }
+
+
+    @if (cartService.produtos().length > 0) {
+
+    <button class="esvaziar" (click)="cartService.esvaziarCarrinho()">
+        Esvaziar carrinho
+    </button>
+
+
+    <div class="resumo">
+
+        <h2>
+            RESUMO DO PEDIDO
+        </h2>
+
+        <div class="linha-resumo">
+
+            <span>
+                @if (cartService.calcularQuantidadeProdutos() === 1) {
+
+                <span>1 produto</span>
+
+                } @else {
+
+                <span>
+                    {{ cartService.calcularQuantidadeProdutos() }} produtos
+                </span>
+
+                }
+            </span>
+
+            <span>
+                {{ formatarPreco(cartService.calcularSubtotal()) }}
+            </span>
+
+        </div>
+
+
+        <div class="linha-resumo">
+
+            <span>
+                Entrega
+            </span>
+
+            <span>
+                R$ 15,00
+            </span>
+
+        </div>
+
+
+        <div class="linha-resumo total">
+
+            <strong>
+                Total
+            </strong>
+
+            <strong>
+                {{ formatarPreco(cartService.calcularSubtotal() + 15) }}
+            </strong>
+
+        </div>
+
+
+        <button class="finalizar">
+            Finalizar compra
+        </button>
+
+    </div>
+
+    } @else {
+
+    <div class="carrinho-vazio">
+
+        <h2>
+            Seu carrinho está vazio
+        </h2>
+
+        <p>
+            Adicione produtos para continuar.
+        </p>
+
+    </div>
+
+    }
+
+</div>
