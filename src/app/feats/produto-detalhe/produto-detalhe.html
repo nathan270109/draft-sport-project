@@ -1,6 +1,10 @@
 <main class="detalhe">
     <!-- O detalhe só é renderizado quando o id da rota encontra um produto. -->
-    @if (produto) {
+    @if (carregando) {
+    <section class="produto-inexistente">
+        <p>Carregando produto...</p>
+    </section>
+    } @else if (produto) {
     <a class="detalhe__voltar" routerLink="/produtos">← Voltar para produtos</a>
 
     <section class="detalhe__principal">

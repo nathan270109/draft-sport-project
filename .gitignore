@@ -1,3 +1,12 @@
+/.openspec/
+/.opencode/
+/.agents/
+/openspec/
+/api/
+.nvmrc
+/node_modules/
+/.angular/
+
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # Compiled output

@@ -21,8 +21,16 @@
     </div>
   </section>
 
+  @if (carregando) {
+    <p class="estado-mensagem">Carregando produtos...</p>
+  } @else if (mensagemErro) {
+    <section class="estado-vazio" role="alert">
+      <h2>Não foi possível carregar a loja.</h2>
+      <p>{{ mensagemErro }}</p>
+      <button type="button" (click)="carregarProdutos()">Tentar novamente</button>
+    </section>
   <!-- @if escolhe entre a grade de resultados e a mensagem de lista vazia. -->
-  @if (produtosFiltrados.length > 0) {
+  } @else if (produtosFiltrados.length > 0) {
     <section class="grade-produtos" aria-label="Lista de produtos">
       <!-- @for cria um card por produto; track id ajuda o Angular a reutilizar elementos. -->
       @for (produto of produtosFiltrados; track produto.id) {

@@ -1,0 +1,106 @@
+<main class="admin-produtos">
+  <header class="admin-produtos__cabecalho">
+    <div>
+      <p class="admin-produtos__eyebrow">DRAFT SPORT / ADMINISTRAÇÃO</p>
+      <h1>Gerenciar produtos</h1>
+      <p>Cadastre, edite ou exclua os itens fornecidos pela API.</p>
+    </div>
+
+    <button type="button" class="botao botao--secundario" (click)="iniciarCriacao()">
+      Novo produto
+    </button>
+  </header>
+
+  @if (mensagemErro) {
+    <p class="mensagem mensagem--erro" role="alert">{{ mensagemErro }}</p>
+  }
+
+  <section class="admin-produtos__conteudo">
+    <form #form="ngForm" class="formulario" (ngSubmit)="salvar(form)">
+      <div class="formulario__titulo">
+        <p class="admin-produtos__eyebrow">{{ produtoEmEdicao ? 'EDIÇÃO' : 'CADASTRO' }}</p>
+        <h2>{{ produtoEmEdicao ? 'Editar produto' : 'Novo produto' }}</h2>
+      </div>
+
+      <label>
+        Nome
+        <input name="nome" [(ngModel)]="formulario.nome" required maxlength="50" #nome="ngModel" />
+        @if (nome.invalid && nome.touched) {
+          <small>Informe um nome de até 50 caracteres.</small>
+        }
+      </label>
+
+      <label>
+        Descrição
+        <textarea name="descricao" [(ngModel)]="formulario.descricao" required #descricao="ngModel"></textarea>
+        @if (descricao.invalid && descricao.touched) {
+          <small>Informe a descrição.</small>
+        }
+      </label>
+
+      <label>
+        Preço
+        <input name="preco" type="number" [(ngModel)]="formulario.preco" required min="0" step="0.01" #preco="ngModel" />
+        @if (preco.invalid && preco.touched) {
+          <small>Informe um preço igual ou maior que zero.</small>
+        }
+      </label>
+
+      <label>
+        URL da imagem
+        <input name="urlImagem" type="url" [(ngModel)]="formulario.urlImagem" required #urlImagem="ngModel" />
+        @if (urlImagem.invalid && urlImagem.touched) {
+          <small>Informe uma URL de imagem válida.</small>
+        }
+      </label>
+
+      <div class="formulario__acoes">
+        <button type="submit" class="botao" [disabled]="form.invalid || salvando">
+          {{ salvando ? 'Salvando...' : produtoEmEdicao ? 'Salvar alterações' : 'Cadastrar produto' }}
+        </button>
+        @if (produtoEmEdicao) {
+          <button type="button" class="botao botao--texto" (click)="iniciarCriacao()">Cancelar edição</button>
+        }
+      </div>
+    </form>
+
+    <section class="lista" aria-label="Produtos cadastrados">
+      <div class="lista__titulo">
+        <h2>Produtos cadastrados</h2>
+        <button type="button" class="botao botao--texto" (click)="carregarProdutos()">Atualizar</button>
+      </div>
+
+      @if (carregando) {
+        <p class="mensagem">Carregando produtos...</p>
+      } @else if (produtos.length === 0) {
+        <p class="mensagem">Nenhum produto cadastrado.</p>
+      } @else {
+        <div class="lista__itens">
+          @for (produto of produtosVisiveis; track produto.id) {
+            <article class="item-produto">
+              <img [src]="produto.urlImagem" [alt]="produto.nome" />
+              <div>
+                <h3>{{ produto.nome }}</h3>
+                <strong>{{ produto.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</strong>
+              </div>
+              <div class="item-produto__acoes">
+                <button type="button" (click)="editar(produto)">Editar</button>
+                <button type="button" class="perigo" (click)="excluir(produto)">Excluir</button>
+              </div>
+            </article>
+          }
+        </div>
+
+        @if (existemMaisProdutos) {
+          <button
+            type="button"
+            class="botao botao--ver-mais"
+            (click)="mostrandoTodos ? verMenosProdutos() : verMaisProdutos()"
+          >
+            {{ mostrandoTodos ? 'Ver menos' : 'Ver mais' }}
+          </button>
+        }
+      }
+    </section>
+  </section>
+</main>

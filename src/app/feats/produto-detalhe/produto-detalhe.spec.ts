@@ -8,10 +8,33 @@ import {
 import { ProdutoDetalhe } from './produto-detalhe';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { CartService } from '../cart/cart-service';
+import { ProdutosApiService } from '../produtos/produtos-api.service';
 
 registerLocaleData(localePt, 'pt-BR');
+
+const produtoDaApi = {
+  id: 1,
+  nome: 'Tênis Nike Air Zoom',
+  descricao: 'Tênis leve para corrida.',
+  preco: 649.9,
+  imagem: 'https://exemplo.com/tenis.jpg',
+  tamanhos: ['Único'],
+  categoria: 'Esporte',
+};
+
+const produtosApi = {
+  buscarParaLoja: vi.fn((id: number) =>
+    id === 1 ? of(produtoDaApi) : throwError(() => new Error('Não encontrado')),
+  ),
+  listarParaLoja: vi.fn(() =>
+    of([
+      produtoDaApi,
+      { ...produtoDaApi, id: 2, nome: 'Jaqueta Corta Vento' },
+    ]),
+  ),
+};
 
 describe('ProdutoDetalhe', () => {
   let component: ProdutoDetalhe;
@@ -22,6 +45,7 @@ describe('ProdutoDetalhe', () => {
       imports: [ProdutoDetalhe],
       providers: [
         provideRouter([]),
+        { provide: ProdutosApiService, useValue: produtosApi },
         {
           provide: ActivatedRoute,
           useValue: {
@@ -59,14 +83,14 @@ describe('ProdutoDetalhe', () => {
     const router = TestBed.inject(Router);
     const navegarParaCarrinho = vi.spyOn(router, 'navigate');
 
-    component.selecionarTamanho('40');
+    component.selecionarTamanho('Único');
     component.aumentarQuantidade();
     component.adicionarAoCarrinho();
 
     expect(cartService.produtos()).toContainEqual(
       expect.objectContaining({
         id: 1,
-        tamanho: '40',
+        tamanho: 'Único',
         quantidade: 2,
       }),
     );
@@ -83,6 +107,7 @@ describe('ProdutoDetalhe com produto inexistente', () => {
       imports: [ProdutoDetalhe],
       providers: [
         provideRouter([]),
+        { provide: ProdutosApiService, useValue: produtosApi },
         {
           provide: ActivatedRoute,
           useValue: {

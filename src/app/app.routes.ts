@@ -3,6 +3,7 @@ import { Home } from './feats/home/home';
 import { Cart } from './feats/cart/cart';
 import { Produtos } from './feats/produtos/produtos';
 import { ProdutoDetalhe } from './feats/produto-detalhe/produto-detalhe';
+import { AdminProdutos } from './feats/admin-produtos/admin-produtos';
 
 
 export const routes: Routes = [
@@ -11,6 +12,7 @@ export const routes: Routes = [
     { path: 'home', component: Home},
     { path: 'produtos', component: Produtos },
     { path: 'produtos/:id', component: ProdutoDetalhe },
-    { path: 'cart', component: Cart}
+    { path: 'cart', component: Cart},
+    { path: 'admin/produtos', component: AdminProdutos },
 
 ];
