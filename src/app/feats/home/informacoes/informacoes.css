@@ -88,11 +88,6 @@
     object-fit: cover;
     border-radius: 20px;
     box-shadow: var(--sombra);
-    transition: transform 0.3s ease;
-}
-
-.endereco:hover {
-    transform: scale(1.01);
 }
 
 .textos-localizacao {
