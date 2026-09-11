@@ -59,6 +59,11 @@
     border-radius: 10px;
 }
 
+#on {
+    width: 120px;
+    height: 150px;
+}
+
 .marca p {
     margin: 15px;
     text-align: center;
