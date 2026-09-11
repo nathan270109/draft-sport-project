@@ -1,6 +1,6 @@
 .catalogo {
   width: min(100% - 40px, 1240px);
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 72px 0 96px;
   color: #fdfdfd;
   font-family: var(--fonte), Arial, sans-serif;

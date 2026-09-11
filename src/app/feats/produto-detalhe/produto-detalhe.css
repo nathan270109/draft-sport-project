@@ -1,6 +1,6 @@
 .detalhe {
   width: min(100% - 40px, 1240px);
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 56px 0 96px;
   color: #fffefe;
   font-family: var(--fonte), Arial, sans-serif;
