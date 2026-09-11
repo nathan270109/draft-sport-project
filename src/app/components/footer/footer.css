@@ -4,7 +4,7 @@
   font-family: var(--fonte, sans-serif);
   padding: 20px 40px 40px;
   /* Efeito de vidro transparente mantendo a estética do seu site */
-  background: rgba(8, 8, 8, 0.397);
+  background: rgba(8, 8, 8, 0.555);
   backdrop-filter: blur(10px);
 }
 
@@ -74,7 +74,7 @@
 }
 
 .footer-links a:hover {
-  color: #dfab03;
+  color: #fcc102;
   transform: translateX(3px);
 }
 
