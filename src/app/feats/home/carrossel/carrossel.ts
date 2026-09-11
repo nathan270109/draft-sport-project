@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { Component, computed, ElementRef, inject, ViewChild } from '@angular/core';
 import { ProductService } from './product-service';
 import { RouterLink } from '@angular/router';
 
@@ -9,38 +9,53 @@ import { RouterLink } from '@angular/router';
   templateUrl: './carrossel.html',
 })
 export class Carrossel {
-
   readonly carrosselService = inject(ProductService);
 
   @ViewChild('carouselTrack') track!: ElementRef<HTMLDivElement>;
 
-  readonly scroLLAmount = 500;
+  readonly scrollAmount = 500;
 
-  scrollLeft(): void {
-    if (this.track?.nativeElement) return;
-    const el = this.track.nativeElement;
-
-    if (el.scrollLeft <= 5) {
-      el.scrollTo({ left: el.scrollWidth, behavior: 'smooth' });
-    } else {
-      el.scrollBy({ left: -this.scroLLAmount, behavior: 'smooth' });
-    }
-  }
+  // Duplicamos os produtos [A, B, C, D, A, B, C, D] para permitir o loop contínuo
+  readonly productsList = computed(() => [
+    ...this.carrosselService.products(),
+    ...this.carrosselService.products()
+  ]);
 
   scrollRight(): void {
     if (!this.track?.nativeElement) return;
     const el = this.track.nativeElement;
+    const metadeDaLargura = el.scrollWidth / 2;
 
-    // Calcula a ponta máxima onde a tela consegue ir
-    const maxScroll = el.scrollWidth - el.clientWidth;
-
-    // Se o macaco já chegou no último galho da direita
-    if (el.scrollLeft >= maxScroll - 5) {
-      // Pula de volta pro começo de tudo! (Produtor A)
-      el.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
-      // Senão, só anda um tiquinho pra direita
-      el.scrollBy({ left: this.scroLLAmount, behavior: 'smooth' });
+    // Se passou da metade (entrou no 2º bloco de produtos)
+    if (el.scrollLeft >= metadeDaLargura) {
+      // Pula instantaneamente de volta para o 1º bloco sem animação
+      el.style.scrollBehavior = 'auto';
+      el.scrollLeft -= metadeDaLargura;
     }
+
+    // Aplica a rolagem suave para a direita
+    requestAnimationFrame(() => {
+      el.style.scrollBehavior = 'smooth';
+      el.scrollBy({ left: this.scrollAmount, behavior: 'smooth' });
+    });
+  }
+
+  scrollLeft(): void {
+    if (!this.track?.nativeElement) return;
+    const el = this.track.nativeElement;
+    const metadeDaLargura = el.scrollWidth / 2;
+
+    // Se está no início do 1º bloco e quer voltar
+    if (el.scrollLeft <= 10) {
+      // Pula instantaneamente para a mesma posição no 2º bloco sem animação
+      el.style.scrollBehavior = 'auto';
+      el.scrollLeft += metadeDaLargura;
+    }
+
+    // Aplica a rolagem suave para a esquerda
+    requestAnimationFrame(() => {
+      el.style.scrollBehavior = 'smooth';
+      el.scrollBy({ left: -this.scrollAmount, behavior: 'smooth' });
+    });
   }
 }
