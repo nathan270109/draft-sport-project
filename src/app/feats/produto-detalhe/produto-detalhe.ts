@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { CartService } from '../cart/cart-service';
 import { InterfaceProdutosTs as Produto } from '../produtos/interface-produtos';
 import { ProdutosMockService } from '../produtos/produtos.service';
 
@@ -22,6 +23,8 @@ export class ProdutoDetalhe {
   constructor(
     private route: ActivatedRoute,
     private produtosService: ProdutosMockService,
+    private cartService: CartService,
+    private router: Router,
   ) {
     // paramMap emite novamente se o usuário abrir outro produto sem recarregar a página.
     this.route.paramMap.subscribe((params) => {
@@ -53,6 +56,27 @@ export class ProdutoDetalhe {
   selecionarTamanho(tamanho: string): void {
     // O HTML usa este valor para aplicar a classe visual "selecionado".
     this.tamanhoSelecionado = tamanho;
+  }
+
+  adicionarAoCarrinho(): void {
+    // Não permite criar um item de carrinho sem produto ou tamanho definido.
+    if (!this.produto || !this.tamanhoSelecionado) {
+      return;
+    }
+
+    // Converte o modelo de catálogo para o formato que o domínio Carrinho espera.
+    this.cartService.adicionarProduto({
+      id: this.produto.id,
+      nome: this.produto.nome,
+      descricao: this.produto.descricao,
+      preco: this.produto.preco,
+      imagem: this.produto.imagem,
+      tamanho: this.tamanhoSelecionado,
+      quantidade: this.quantidade,
+    });
+
+    // Após adicionar, leva o usuário à página que mostra o item incluído.
+    this.router.navigate(['/cart']);
   }
 
   onImageError(event: Event): void {

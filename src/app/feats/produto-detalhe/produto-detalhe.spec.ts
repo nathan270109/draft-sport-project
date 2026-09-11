@@ -1,9 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/router';
+import {
+  ActivatedRoute,
+  convertToParamMap,
+  provideRouter,
+  Router,
+} from '@angular/router';
 import { ProdutoDetalhe } from './produto-detalhe';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { of } from 'rxjs';
+import { CartService } from '../cart/cart-service';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -46,6 +52,25 @@ describe('ProdutoDetalhe', () => {
     );
 
     expect(incluiProdutoAtual).toBe(false);
+  });
+
+  it('deve adicionar o produto selecionado ao carrinho e navegar para /cart', () => {
+    const cartService = TestBed.inject(CartService);
+    const router = TestBed.inject(Router);
+    const navegarParaCarrinho = vi.spyOn(router, 'navigate');
+
+    component.selecionarTamanho('40');
+    component.aumentarQuantidade();
+    component.adicionarAoCarrinho();
+
+    expect(cartService.produtos()).toContainEqual(
+      expect.objectContaining({
+        id: 1,
+        tamanho: '40',
+        quantidade: 2,
+      }),
+    );
+    expect(navegarParaCarrinho).toHaveBeenCalledWith(['/cart']);
   });
 });
 

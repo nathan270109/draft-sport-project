@@ -34,7 +34,12 @@
                 <button type="button" aria-label="Aumentar quantidade" (click)="aumentarQuantidade()">+</button>
             </div>
 
-            <button type="button" class="adicionar">
+            <button
+                type="button"
+                class="adicionar"
+                [disabled]="!tamanhoSelecionado"
+                (click)="adicionarAoCarrinho()"
+            >
                 Adicionar ao carrinho
             </button>
         </div>

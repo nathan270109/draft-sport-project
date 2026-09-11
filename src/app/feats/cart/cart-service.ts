@@ -1,7 +1,8 @@
-import { Service, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { ProdutoCarrinho } from './produto-carrinho';
 
-@Service()
+// Serviço compartilhado: a mesma instância é usada pelo detalhe e pela página do carrinho.
+@Injectable({ providedIn: 'root' })
 export class CartService {
     produtos = signal<ProdutoCarrinho[]>([]);
 
