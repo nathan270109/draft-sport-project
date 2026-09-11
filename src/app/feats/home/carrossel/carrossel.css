@@ -1,3 +1,7 @@
+.html {
+    margin-bottom: 100px;
+}
+
 .nav-carrossel nav {
     display: flex;
     gap: 32px;
