@@ -1,7 +1,7 @@
 .hero {
     position: relative;
     width: 88%;
-    margin:  50px auto;
+    margin:  100px auto;
     height: 460px;
     border-radius: 10px;
     overflow: hidden; 
@@ -66,4 +66,49 @@
 .hero-btn:hover {
     background-color: rgba(255, 255, 255, 0.5);
     transform: scale(1.03);
+}
+
+/*////////////////////////////*/
+
+@media (max-width: 768px) {
+  .hero {
+    width: 92%;
+    height: 380px;
+    margin: 80px auto;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+
+  .hero-btn {
+    padding: 9px 24px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Celulares (até 480px) */
+@media (max-width: 480px) {
+  .hero {
+    width: 95%;
+    height: 300px;
+    margin: 70px auto 40px;
+    border-radius: 8px;
+  }
+
+  .hero-content {
+    gap: 10px;
+    padding: 0 15px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 0.8px;
+  }
+
+  .hero-btn {
+    padding: 8px 20px;
+    font-size: 0.85rem;
+  }
 }

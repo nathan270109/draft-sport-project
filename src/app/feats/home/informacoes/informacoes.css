@@ -104,3 +104,68 @@
     gap: 10px;
     color: black;
 }
+
+/* ==========================================
+   RESPONSIVIDADE (@media queries)
+   ========================================== */
+
+/* Tablets (até 768px) */
+@media (max-width: 768px) {
+    .container-novidades {
+        margin: 30px 20px;
+    }
+
+    .imagens {
+        gap: 20px;
+        padding: 0 20px;
+    }
+
+    .endereco {
+        max-width: 100%;
+        height: 320px;
+        /* Reduz a altura da imagem para caber melhor na tela */
+    }
+
+    .textos-localizacao {
+        margin: 10px 20px 50px 20px;
+    }
+}
+
+/* Celulares (até 480px) */
+@media (max-width: 480px) {
+    .container-novidades {
+        margin: 20px 16px;
+    }
+
+    /* Faz o input e o botão ocuparem a largura de forma fluida */
+    .formulario {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .digite-email {
+        width: 100%;
+        /* Adapta a largura ao tamanho da tela */
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+
+    /* Empilha as imagens da localização caso haja mais de uma lado a lado */
+    .imagens {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        width: 100%;
+        padding: 0 16px;
+    }
+
+    .endereco {
+        width: 100%;
+        height: 240px;
+        /* Altura ideal para telas mobile */
+    }
+
+    .textos-localizacao {
+        margin: 10px 16px 40px 16px;
+    }
+}
