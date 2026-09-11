@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CartService } from '../cart/cart-service';
 import { InterfaceProdutosTs as Produto } from '../produtos/interface-produtos';
-import { ProdutosMockService } from '../produtos/produtos.service';
+import { ProdutosApiService } from '../produtos/produtos-api.service';
 
 @Component({
   imports: [CommonModule, RouterLink],
@@ -16,29 +16,57 @@ export class ProdutoDetalhe {
   produto?: Produto;
   // Lista derivada do mesmo catálogo, sem repetir o item aberto.
   relacionados: Produto[] = [];
+  carregando = true;
   // Estados locais: ainda não são enviados nem persistidos no carrinho.
   quantidade = 1;
   tamanhoSelecionado?: string;
 
   constructor(
     private route: ActivatedRoute,
-    private produtosService: ProdutosMockService,
+    private produtosApi: ProdutosApiService,
     private cartService: CartService,
     private router: Router,
+    private changeDetector: ChangeDetectorRef,
   ) {
     // paramMap emite novamente se o usuário abrir outro produto sem recarregar a página.
     this.route.paramMap.subscribe((params) => {
       const id = Number(params.get('id'));
 
-      // Busca o item da URL e só exibe recomendações quando ele existe.
-      this.produto = this.produtosService.buscarPorId(id);
-      this.relacionados = this.produto
-        ? this.produtosService.relacionados(id)
-        : [];
-
       // Ao trocar de produto, a escolha anterior não deve permanecer selecionada.
       this.quantidade = 1;
       this.tamanhoSelecionado = undefined;
+      this.carregando = true;
+
+      // O produto e as recomendações passam a ser obtidos da API real.
+      this.produtosApi.buscarParaLoja(id).subscribe({
+        next: (produto) => {
+          this.produto = produto;
+          this.carregando = false;
+          this.carregarRelacionados(id);
+          this.changeDetector.markForCheck();
+        },
+        error: () => {
+          this.produto = undefined;
+          this.relacionados = [];
+          this.carregando = false;
+          this.changeDetector.markForCheck();
+        },
+      });
+    });
+  }
+
+  private carregarRelacionados(idAtual: number): void {
+    this.produtosApi.listarParaLoja().subscribe({
+      next: (produtos) => {
+        this.relacionados = produtos
+          .filter((produto) => produto.id !== idAtual)
+          .slice(0, 4);
+        this.changeDetector.markForCheck();
+      },
+      error: () => {
+        this.relacionados = [];
+        this.changeDetector.markForCheck();
+      },
     });
   }
 
@@ -88,6 +116,18 @@ export class ProdutoDetalhe {
     }
 
     imagem.dataset['fallback'] = 'true';
-    imagem.src = '/produtos/tenis-adizero-mock.png';
+    imagem.src = this.criarImagemAlternativa(imagem.alt);
+  }
+
+  private criarImagemAlternativa(nomeProduto: string): string {
+    const svg = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+        <rect width="600" height="600" fill="#efeeeb" />
+        <circle cx="300" cy="240" r="90" fill="#d9d6d0" />
+        <path d="M215 270h170" stroke="#555" stroke-width="14" stroke-linecap="round" />
+        <text x="300" y="420" text-anchor="middle" fill="#222" font-family="Arial, sans-serif" font-size="26" font-weight="700">${nomeProduto}</text>
+      </svg>`;
+
+    return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
   }
 }

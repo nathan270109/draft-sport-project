@@ -9,7 +9,7 @@
 .detalhe__voltar {
   display: inline-block;
   margin-bottom: 42px;
-  color: #b6b6b6;
+  color: #b5b5b5;
   font-size: 0.85rem;
   font-weight: 600;
   text-decoration: none;
@@ -17,7 +17,7 @@
 }
 
 .detalhe__voltar:hover {
-  color: #fcfcfc;
+  color: #c76e00;
 }
 
 .detalhe__principal {
@@ -32,7 +32,8 @@
   aspect-ratio: 1;
   object-fit: cover;
   border-radius: 3px;
-  background: #f3f3f3;
+  border: 1px solid rgba(255, 255, 255, .12);
+  background: #242424;
 }
 
 .detalhe__conteudo {
@@ -42,7 +43,7 @@
 
 .detalhe__categoria {
   margin-bottom: 12px;
-  color: #c0c0c0;
+  color: #c76e00;
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -64,7 +65,7 @@
 }
 
 .detalhe__principal p {
-  color: #fdfdfdb7;
+  color: #c9c9c9;
   line-height: 1.65;
   margin-bottom: 30px;
 }
@@ -88,26 +89,26 @@
 .quantidade button {
   min-width: 42px;
   padding: 10px;
-  border: 1px solid #d4d4d4;
+  border: 1px solid rgba(255, 255, 255, .4);
   border-radius: 2px;
-  background: white;
-  color: #151515;
+  background: transparent;
+  color: #fdfdfd;
   font: inherit;
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .tamanhos button.selecionado {
-  background: black;
-  border-color: black;
-  color: white;
+  background: #c76e00;
+  border-color: #c76e00;
+  color: #101010;
 }
 
 .quantidade {
   align-items: center;
   width: fit-content;
   padding: 4px;
-  border: 1px solid #dedede;
+  border: 1px solid rgba(255, 255, 255, .35);
   border-radius: 3px;
 }
 
@@ -122,8 +123,8 @@
   padding: 14px;
   border: 0;
   border-radius: 3px;
-  background: black;
-  color: white;
+  background: #c76e00;
+  color: #101010;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
@@ -131,8 +132,10 @@
 }
 
 .adicionar:hover {
-  background: #303030;
+  background: #e9840c;
 }
+
+.adicionar:disabled { cursor: not-allowed; opacity: .45; }
 
 .adicionar:active {
   transform: scale(0.99);
@@ -141,7 +144,7 @@
 .relacionados {
   margin-top: 112px;
   padding-top: 32px;
-  border-top: 1px solid #e7e7e7;
+  border-top: 1px solid rgba(255, 255, 255, .16);
 }
 
 .relacionados h2 {
@@ -167,13 +170,17 @@
   aspect-ratio: 1;
   object-fit: cover;
   border-radius: 3px;
-  background: #f3f3f3;
+  border: 1px solid rgba(255, 255, 255, .12);
+  background: #242424;
 }
 
 .grade-produtos h3 {
   margin: 12px 0 6px;
   font-size: 0.9rem;
 }
+
+.grade-produtos a:hover h3,
+.grade-produtos a:hover span { color: #c76e00; }
 
 .produto-inexistente {
   padding: 120px 0;

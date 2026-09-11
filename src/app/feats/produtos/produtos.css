@@ -95,7 +95,8 @@
   overflow: hidden;
   aspect-ratio: 0.92;
   border-radius: 3px;
-  background: #f3f3f3;
+  border: 1px solid rgba(255, 255, 255, .12);
+  background: #242424;
 }
 
 .card-produto img {
@@ -108,6 +109,11 @@
 
 .card-produto:hover img {
   transform: scale(1.035);
+}
+
+.card-produto:hover h2,
+.card-produto:hover strong {
+  color: #c76e00;
 }
 
 .card-produto:focus-visible {
@@ -134,8 +140,8 @@
 .estado-vazio {
   padding: 88px 20px;
   text-align: center;
-  border-top: 1px solid #e7e7e7;
-  border-bottom: 1px solid #e7e7e7;
+  border-top: 1px solid rgba(255, 255, 255, .16);
+  border-bottom: 1px solid rgba(255, 255, 255, .16);
 }
 
 .estado-vazio h2 {
@@ -144,7 +150,25 @@
 }
 
 .estado-vazio p:last-child {
-  color: #626262;
+  color: #b5b5b5;
+}
+
+.estado-mensagem {
+  padding: 64px 0;
+  color: #b5b5b5;
+  text-align: center;
+}
+
+.estado-vazio button {
+  margin-top: 20px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 3px;
+  border: 1px solid #c76e00;
+  background: #c76e00;
+  color: #101010;
+  cursor: pointer;
+  font: inherit;
 }
 
 @media (max-width: 900px) {
