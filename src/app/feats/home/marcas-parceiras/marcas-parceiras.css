@@ -1,0 +1,73 @@
+.anuncio {
+    position: relative;
+    background-image: url('/assets/imagens/aero-fit-nike.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: calc(100% - 60px);
+    height: 350px;
+    margin: 40px 30px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.anuncio a {
+    text-decoration: none;
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 25px;
+    border: 0px solid;
+    border-radius: 30px;
+    background-color: rgba(27, 27, 27, 0.5);
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: var(--fonte);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.anuncio a:hover {
+    background-color: rgba(27, 27, 27, 0.7);
+    transform: translateX(-50%) scale(1.03);
+}
+
+.marcas {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.marca {
+    margin: 40px 0 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: .3s;
+}
+
+.marca:hover {
+    transform: scale(1.02);
+}
+
+.marca img {
+    width: 250px;
+    height: 130px;
+    border-radius: 10px;
+}
+
+#on {
+    width: 120px;
+    height: 150px;
+}
+
+.marca p {
+    margin: 15px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: var(--fonte);
+}
