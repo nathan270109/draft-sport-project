@@ -4,3 +4,5 @@
 /openspec/
 /api/
 .nvmrc
+/node_modules/
+/.angular/
