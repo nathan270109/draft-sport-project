@@ -10,7 +10,7 @@
     align-items: center;
     padding: 0 40px;
     box-sizing: border-box;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.4));
+    background: #0505051c;
     backdrop-filter: blur(10px);
     font-family: var(--fonte, sans-serif);
 }
