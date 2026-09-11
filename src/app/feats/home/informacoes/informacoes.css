@@ -51,7 +51,7 @@
     border: none;
     font-size: 18px;
     background-color: rgba(255, 255, 255, 0.64);
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(7, 7, 7, 0.5);
     cursor: pointer;
     border-radius: 50%;
     padding: 10px;
@@ -102,7 +102,7 @@
     text-align: center;
     margin: 10px 0 70px 0;
     gap: 10px;
-    color: black;
+    color: rgb(255, 255, 255);
 }
 
 /* ==========================================
