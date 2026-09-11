@@ -1,8 +1,8 @@
 .catalogo {
   width: min(100% - 40px, 1240px);
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 72px 0 96px;
-  color: #151515;
+  color: #fdfdfd;
   font-family: var(--fonte), Arial, sans-serif;
 }
 
@@ -14,7 +14,7 @@
 
 .catalogo__eyebrow,
 .card-produto__categoria {
-  color: #737373;
+  color: #adadad;
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -42,7 +42,7 @@
 
 .catalogo__cabecalho p:not(.catalogo__eyebrow) {
   max-width: 530px;
-  color: #626262;
+  color: #9b9b9b;
   line-height: 1.5;
 }
 
@@ -53,7 +53,7 @@
 .campo-busca__rotulo {
   display: block;
   margin-bottom: 8px;
-  color: #737373;
+  color: #fffefe;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -64,15 +64,15 @@
   width: 100%;
   padding: 12px 0;
   border: 0;
-  border-bottom: 1px solid #1c1c1c;
+  border-bottom: 1px solid #fafafa;
   border-radius: 0;
   background: transparent;
-  color: #151515;
+  color: #fdfdfd;
   font: inherit;
 }
 
 .campo-busca input::placeholder {
-  color: #9a9a9a;
+  color: #ffffffc2;
 }
 
 .campo-busca input:focus {

@@ -1,22 +1,23 @@
 .detalhe {
   width: min(100% - 40px, 1240px);
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 56px 0 96px;
-  color: #151515;
+  color: #fffefe;
   font-family: var(--fonte), Arial, sans-serif;
 }
 
 .detalhe__voltar {
   display: inline-block;
   margin-bottom: 42px;
-  color: #585858;
+  color: #b6b6b6;
   font-size: 0.85rem;
   font-weight: 600;
   text-decoration: none;
+  transition: 0.2s;
 }
 
 .detalhe__voltar:hover {
-  color: #111;
+  color: #fcfcfc;
 }
 
 .detalhe__principal {
@@ -41,7 +42,7 @@
 
 .detalhe__categoria {
   margin-bottom: 12px;
-  color: #737373;
+  color: #c0c0c0;
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -63,7 +64,7 @@
 }
 
 .detalhe__principal p {
-  color: #5c5c5c;
+  color: #fdfdfdb7;
   line-height: 1.65;
   margin-bottom: 30px;
 }
