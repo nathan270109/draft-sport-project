@@ -1,14 +1,18 @@
+.html {
+    margin-bottom: 150px;
+    margin-top: 100px;
+}
 
 .nav-carrossel nav {
     display: flex;
     gap: 32px;
     align-items: center;
     padding: 10px 0 0px 0;
-    margin:0 0 0 84px;
+    margin: 0 0 0 84px;
 }
 
 .nav-carrossel h2 {
-    color: black;
+    color: rgb(253, 253, 253);
     font-family: system-ui, -apple-system, sans-serif;
     letter-spacing: -0.06em;
     line-height: 0.98;
@@ -20,11 +24,11 @@
 .nav-carrossel nav a {
     position: relative;
     text-decoration: none;
-    color: #363636;
+    color: #fcfafac4;
     font-family: system-ui, -apple-system, sans-serif;
     font-size: 15px;
     font-weight: 500;
-    padding: 6px 0; 
+    padding: 6px 0;
     transition: color 0.3s ease;
     cursor: pointer;
 }
@@ -36,14 +40,15 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: #C76E00;
+    background-color: #d87701;
     transform: scaleX(0);
     transform-origin: center;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.nav-carrossel nav a:hover, .nav-carrossel nav a.active {
-    color: #C76E00;
+.nav-carrossel nav a:hover,
+.nav-carrossel nav a.active {
+    color: #e27d02;
     font-weight: 600;
 }
 
@@ -94,8 +99,10 @@
     padding: 16px;
     text-align: center;
     color: white;
-    background-color: #292929c0;
+    background-color: rgba(184, 183, 183, 0.425);
+    backdrop-filter: blur(8px);
     transition: 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.4);
 
 }
 
@@ -116,19 +123,19 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.712);
     color: #d6d3d3;
-    border: none;
+    border: 1px solid #ffff;
     width: 45px;
     height: 45px;
     border-radius: 50%;
     cursor: pointer;
     z-index: 10;
-    transition: 0.4s;
+    transition: 0.2s;
 }
 
 .carousel-button:hover {
-    background-color: rgba(0, 0, 0, 0.74);
+    background-color: rgba(24, 24, 24, 0.637);
 }
 
 .carousel-button.prev {
@@ -137,4 +144,100 @@
 
 .carousel-button.next {
     right: -40px;
+}
+
+/* ///////////////////////////////*/
+
+@media (max-width: 1024px) {
+    .nav-carrossel h2 {
+        margin: 40px 0 0 5%;
+    }
+
+    .nav-carrossel nav {
+        margin: 0 0 0 5%;
+        gap: 20px;
+    }
+
+    /* Traz as setas para dentro do container para não vazarem da tela */
+    .carousel-button.prev {
+        left: -10px;
+    }
+
+    .carousel-button.next {
+        right: -10px;
+    }
+}
+
+/* Tablets em modo retrato (até 768px) */
+@media (max-width: 768px) {
+    .nav-carrossel h2 {
+        margin: 30px 0 0 16px;
+    }
+
+    .nav-carrossel nav {
+        margin: 0 0 0 16px;
+        gap: 16px;
+        overflow-x: auto;
+        /* Permite rolar os links se a tela for estreita */
+        padding-bottom: 5px;
+        scrollbar-width: none;
+    }
+
+    .nav-carrossel nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .carousel-father {
+        width: 100%;
+        padding: 16px;
+    }
+
+    .product-card {
+        flex: 0 0 170px;
+        /* Reduz o tamanho do card em tablets */
+        padding: 12px;
+    }
+
+    .product-card img {
+        width: 100%;
+        height: 170px;
+    }
+
+    .carousel-button {
+        width: 38px;
+        height: 38px;
+    }
+}
+
+/* Celulares (até 480px) */
+@media (max-width: 480px) {
+    .nav-carrossel h2 {
+        margin: 20px 0 0 16px;
+    }
+
+    .nav-carrossel nav {
+        gap: 12px;
+    }
+
+    .nav-carrossel nav a {
+        font-size: 14px;
+        white-space: nowrap;
+        /* Evita quebra de linha nos links */
+    }
+
+    .product-card {
+        flex: 0 0 145px;
+        /* Tamanho ideal para exibir mais de um card no celular */
+        padding: 10px;
+    }
+
+    .product-card img {
+        width: 100%;
+        height: 145px;
+    }
+
+    /* Esconde as setas no celular para focar na rolagem por toque (touch) */
+    .carousel-button {
+        display: none;
+    }
 }
