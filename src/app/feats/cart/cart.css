@@ -50,7 +50,7 @@
 .produto-info p {
     margin: 6px 0;
 
-    color: #a1a1a1;
+    color: #acacac;
     font-size: 14px;
 }
 
@@ -119,7 +119,7 @@
 
     background: none;
 
-    color: #949494;
+    color: #838383;
 
     font-size: 13px;
     text-decoration: underline;
@@ -175,6 +175,7 @@
 
 .carrinho-vazio {
     margin-top: 30px;
+    margin-bottom: 100px;
     padding: 70px 20px;
 
     border-top: 1px solid #e7e7e7;
@@ -189,7 +190,7 @@
 }
 
 .carrinho-vazio p {
-    color: #666;
+    color: #fffefead;
 }
 
 
