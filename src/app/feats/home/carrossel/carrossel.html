@@ -1,5 +1,4 @@
-<div class="html">
-
+<div>
     <div class="nav-carrossel">
         <h2>PRODUTOS</h2>
         <nav>
@@ -16,13 +15,13 @@
             <button class="carousel-button prev" (click)="scrollLeft()" aria-label="Anterior">&#10094;</button>
 
             <div class="carousel-track" #carouselTrack>
-                @for (product of carrosselService.products(); track $index) { 
+                @for (product of productsList(); track $index) {
                 <div class="product-card">
                     <img [src]="product.image" loading="lazy" [alt]="product.name">
                     <h3>{{ product.name }}</h3>
                     <p>R$ {{ product.price }}</p>
                 </div>
-            }
+                }
             </div>
 
             <button class="carousel-button next" (click)="scrollRight()" aria-label="Próximo">&#10095;</button>
