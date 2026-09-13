@@ -6,7 +6,7 @@
     background-repeat: no-repeat;
     width: calc(100% - 60px);
     height: 350px;
-    margin: 40px 30px;
+    margin: 90px 30px 50px 30px;
     border-radius: 10px;
     overflow: hidden;
 }
@@ -42,7 +42,7 @@
 }
 
 .marca {
-    margin: 40px 0 30px;
+    margin: 40px 0 -35px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -75,7 +75,7 @@
 .parceiras h2 {
     color: white;
     font-family: Arial, Helvetica, sans-serif;
-    margin: 200px 110px 0;
+    margin: 120px 10px 0 110px;
     font-size: clamp(2rem, 3vw, 3.6rem);
     line-height: 0.98;
     letter-spacing: -0.06em;
