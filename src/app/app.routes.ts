@@ -4,6 +4,7 @@ import { Cart } from './feats/cart/cart';
 import { Produtos } from './feats/produtos/produtos';
 import { ProdutoDetalhe } from './feats/produto-detalhe/produto-detalhe';
 import { AdminProdutos } from './feats/admin-produtos/admin-produtos';
+import { CompraRealizada } from './feats/compra-realizada/compra-realizada';
 
 
 export const routes: Routes = [
@@ -14,5 +15,6 @@ export const routes: Routes = [
     { path: 'produtos/:id', component: ProdutoDetalhe },
     { path: 'cart', component: Cart},
     { path: 'admin/produtos', component: AdminProdutos },
+    { path: 'compra-realizada', component: CompraRealizada },
 
 ];
