@@ -17,8 +17,8 @@
     letter-spacing: -0.06em;
     line-height: 0.98;
     max-width: 660px;
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    margin: 70px 0 0 82px;
+    font-size: clamp(2rem, 3vw, 3.6rem);
+    margin: 70px 0 12px 82px;
 }
 
 .nav-carrossel nav a {
