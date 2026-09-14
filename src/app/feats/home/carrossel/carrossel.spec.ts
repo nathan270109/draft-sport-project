@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { Carrossel } from './carrossel';
 
 describe('Carrossel', () => {
@@ -7,7 +8,7 @@ describe('Carrossel', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Carrossel],
+      imports: [Carrossel, RouterTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(Carrossel);
