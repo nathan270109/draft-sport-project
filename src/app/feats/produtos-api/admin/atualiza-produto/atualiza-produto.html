@@ -1,0 +1,66 @@
+<section class="atualiza-produto">
+
+    <form (submit)="atualizarProduto($event)">
+        <legend>Atualizar Produto</legend>
+
+        <div class="produtos">
+            <div class="produto">
+                <!-- ID do Produto -->
+                <label for="id">ID do Produto</label>
+                <input id="id" type="text" placeholder="ID do Produto" [formField]="putForm.id">
+                @if (putForm.id().touched() && putForm.id().invalid()) {
+                    @for (error of putForm.id().errors(); track error.kind) {
+                        <span class="required">{{error.message}}</span>
+                    }
+                }
+            </div>
+
+            <div class="produto">
+                <!-- Nome do Produto -->
+                <label for="nome">Nome do Produto</label>
+                <input id="nome" type="text" placeholder="Nome do Produto" [formField]="putForm.nome">
+                @if (putForm.nome().touched() && putForm.nome().invalid()) {
+                    @for (error of putForm.nome().errors(); track error.kind) {
+                        <span class="required">{{error.message}}</span>
+                    }
+                }
+            </div>
+
+            <div class="produto">
+                <!-- Descrição do Produto -->
+                <label for="descricao">Descrição do Produto</label>
+                <input id="descricao" type="text" placeholder="Descrição do Produto" [formField]="putForm.descricao">
+                @if (putForm.descricao().touched() && putForm.descricao().invalid()) {
+                    @for (error of putForm.descricao().errors(); track error.kind) {
+                        <span class="required">{{error.message}}</span>
+                    }
+                }
+            </div>
+
+            <div class="produto">
+                <!-- Preço do Produto -->
+                <label for="preco">Preço do Produto</label>
+                <input id="preco" type="number" placeholder="Preço do Produto" [formField]="putForm.preco">
+                @if (putForm.preco().touched() && putForm.preco().invalid()) {
+                    @for (error of putForm.preco().errors(); track error.kind) {
+                        <span class="required">{{error.message}}</span>
+                    }
+                }
+            </div>
+
+            <div class="produto">
+                <!-- Url da Imagem -->
+                <label for="urlImagem">Url da Imagem</label>
+                <input id="urlImagem" type="text" placeholder="Url da Imagem" [formField]="putForm.urlImagem">
+                @if (putForm.urlImagem().touched() && putForm.urlImagem().invalid()) {
+                    @for (error of putForm.urlImagem().errors(); track error.kind) {
+                        <span class="required">{{error.message}}</span>
+                    }
+                }
+            </div>
+        </div>
+
+        <button>Atualizar Produto</button>
+    </form>
+
+</section>

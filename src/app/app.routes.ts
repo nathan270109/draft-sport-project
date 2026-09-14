@@ -5,7 +5,7 @@ import { Produtos } from './feats/produtos/produtos';
 import { ProdutoDetalhe } from './feats/produto-detalhe/produto-detalhe';
 import { AdminProdutos } from './feats/admin-produtos/admin-produtos';
 import { CompraRealizada } from './feats/compra-realizada/compra-realizada';
-
+import { Admin } from './feats/produtos-api/admin/admin';
 
 export const routes: Routes = [
 
@@ -16,5 +16,6 @@ export const routes: Routes = [
     { path: 'cart', component: Cart},
     { path: 'admin/produtos', component: AdminProdutos },
     { path: 'compra-realizada', component: CompraRealizada },
+    { path: 'admin', component: Admin },
 
 ];
