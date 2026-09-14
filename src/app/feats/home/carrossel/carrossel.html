@@ -16,7 +16,14 @@
 
             <div class="carousel-track" #carouselTrack>
                 @for (product of productsList(); track $index) {
-                <div class="product-card">
+                <div
+                    class="product-card"
+                    role="button"
+                    tabindex="0"
+                    (click)="abrirDetalhe(product.id)"
+                    (keydown)="onTeclaProduto($event, product.id)"
+                    style="cursor: pointer;"
+                >
                     <img [src]="product.image" loading="lazy" [alt]="product.name">
                     <h3>{{ product.name }}</h3>
                     <p>R$ {{ product.price }}</p>
