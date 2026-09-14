@@ -1,1 +1,55 @@
-<p>cadastro-produto works!</p>
+<section class="cadastro-produto">
+
+    <form (submit)="cadastroProduto($event)">
+        <legend>Cadastrar Produto</legend>
+
+        <div class="produtos">
+            <div class="produto">
+                <!-- Nome do Produto -->
+                <label for="nome">Nome do Produto</label>
+                <input id="nome" type="text" placeholder="Nome do Produto" [formField]="produtoForm.nome">
+                @if (produtoForm.nome().touched() && produtoForm.nome().invalid()) {
+                    @for (error of produtoForm.nome().errors(); track error.kind) {
+                        <span class="required">{{error.message}}</span>
+                    }
+                }
+            </div>
+
+            <div class="produto">
+                <!-- Descrição -->
+                <label for="descricao">Descrição do Produto</label>
+                <input id="descricao" type="text" placeholder="Descrição do Produto" [formField]="produtoForm.descricao">
+                @if (produtoForm.descricao().touched() && produtoForm.descricao().invalid()) {
+                    @for (error of produtoForm.descricao().errors(); track error.kind) {
+                        <span class="required">{{error.message}}</span>
+                    }
+                }
+            </div>
+
+            <div class="produto">
+                <!-- Preço do Produto -->
+                <label for="preco">Preço do Produto</label>
+                <input id="preco" type="number" inputmode="numeric" placeholder="Preço do Produto" [formField]="produtoForm.preco">
+                @if (produtoForm.preco().touched() && produtoForm.preco().invalid()) {
+                    @for (error of produtoForm.preco().errors(); track error.kind) {
+                        <span class="required">{{error.message}}</span>
+                    }
+                }
+            </div>
+
+            <div class="produto">
+                <!-- Url da Imagem -->
+                <label for="urlImagem">Url da Imagem</label>
+                <input id="urlImagem" type="text" placeholder="Url da Imagem" [formField]="produtoForm.urlImagem">
+                @if (produtoForm.urlImagem().touched() && produtoForm.urlImagem().invalid()) {
+                    @for (error of produtoForm.urlImagem().errors(); track error.kind) {
+                        <span class="required">{{error.message}}</span>
+                    }
+                }
+            </div>
+        </div>
+
+        <button>Cadastrar Produto</button>
+    </form>
+    
+</section>
