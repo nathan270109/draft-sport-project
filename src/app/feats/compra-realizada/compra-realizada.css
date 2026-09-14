@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 80px 0;
+    margin: 80px 0 0 0;
 }
 
 .compra-realizada {
@@ -28,7 +28,8 @@
 
 .compra-realizada p {
     font-size: 25px;
-    font-weight: 300;
+    font-weight: 500;
+    color: orange;
 }
 
 .compra-imagem {
@@ -36,4 +37,27 @@
     height: 200px;
     margin: 40px auto 5px auto;
     border-radius: 10px;
+}
+
+.botao {
+    display: flex;
+    justify-content: center;
+}
+
+.botao button {
+    padding: 8px 16px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 254, 0.8);
+    font-weight: bold;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    margin: -40px 0 80px 0;
+    transition: .3s;
+    font-size: 18px;
+    box-shadow: var(--sombra);
+}
+
+.botao button:hover {
+    transform: scale(1.02);
+    background-color: rgba(255, 255, 255, 0.3);
 }
