@@ -1,1 +1,3 @@
-export interface InterfaceDelete {}
+export interface InterfaceDelete {
+    id: number | null;
+}

@@ -8,6 +8,7 @@ import { CompraRealizada } from './feats/compra-realizada/compra-realizada';
 import { CadastroProduto } from './feats/produtos-api/admin/cadastro-produto/cadastro-produto';
 import { Admin } from './feats/produtos-api/admin/admin';
 import { AtualizaProduto } from './feats/produtos-api/admin/atualiza-produto/atualiza-produto';
+import { DeletaProduto } from './feats/produtos-api/admin/deleta-produto/deleta-produto';
 
 
 export const routes: Routes = [
@@ -22,5 +23,6 @@ export const routes: Routes = [
     { path: 'admin', component: Admin },
     { path: 'cadastro-produto', component: CadastroProduto },
     { path: 'atualiza-produto', component: AtualizaProduto },
+    { path: 'deleta-produto', component: DeletaProduto },
 
 ];
